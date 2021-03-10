@@ -36,13 +36,15 @@ void handy_sdl_draw_graphics(void)
 			switch(gui_ImageScaling)
 			{
 				/* Prefer Keeping Aspect Ratio */
-				case 0:
+				//case 0:
 					// (18 * 160) is the Y offset.
-					upscale_160x102_to_320xXXX_noAveraging((uint32_t* __restrict__)mainSurface->pixels + (18 * 160), (uint32_t* __restrict__)HandyBuffer->pixels, 204);
-				break;
-				case 1:
+					//upscale_160x102_to_320xXXX_noAveraging((uint32_t* __restrict__)mainSurface->pixels + (18 * 160), (uint32_t* __restrict__)HandyBuffer->pixels, 204);
+				//break;
+				//case 1:
 				// Linear filtering (fast upscaler)
-					upscale_160x102_to_320xXXX((uint32_t* __restrict__)mainSurface->pixels, (uint32_t* __restrict__)HandyBuffer->pixels, 240);
+					//upscale_160x102_to_320xXXX((uint32_t* __restrict__)mainSurface->pixels, (uint32_t* __restrict__)HandyBuffer->pixels, 240);
+				default:
+					bitmap_scale(0, 0, 160, 102, 240, 180, 160, 0, HandyBuffer->pixels, mainSurface->pixels);
 				break;
 			}
 		}
