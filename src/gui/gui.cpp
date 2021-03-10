@@ -378,13 +378,13 @@ void gui_MainMenuRun(MENU *menu)
 			if(gui_event.type == SDL_KEYDOWN) {
 				// DINGOO A - apply parameter or enter submenu
 				//if(gui_event.key.keysym.sym == SDLK_RETURN) if(mi->itemOnA != NULL) (*mi->itemOnA)();
-				if(gui_event.key.keysym.sym == SDLK_LCTRL)
+				if(gui_event.key.keysym.sym == SDLK_F1)
 				{
 					if(mi->itemOnA != NULL) (*mi->itemOnA)();
 				}
 				// DINGOO B - exit or back to previous menu
 				//if(gui_event.key.keysym.sym == SDLK_ESCAPE) return;
-				if(gui_event.key.keysym.sym == SDLK_LALT) return;
+				if(gui_event.key.keysym.sym == SDLK_RSHIFT) return;
 				// DINGOO UP - arrow down
 				if(gui_event.key.keysym.sym == SDLK_UP) if(--menu->itemCur < 0) menu->itemCur = menu->itemNum - 1;
 				// DINGOO DOWN - arrow up

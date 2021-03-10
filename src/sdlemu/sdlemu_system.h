@@ -35,11 +35,11 @@ typedef unsigned char  u8;
 typedef unsigned short u16;
 typedef uint32_t   u32;
 
-#ifdef _MSC_VER
-typedef unsigned __int64 u64;
-#else
-typedef unsigned long long u64;
-#endif
+//#ifdef _MSC_VER
+//typedef unsigned __int64 u64;
+//#else
+//typedef unsigned long long u64;
+//#endif
 
 typedef signed char s8;
 typedef signed short s16;

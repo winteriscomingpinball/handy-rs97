@@ -72,11 +72,16 @@
 	
 	#define OUTPUT_WIDTH 320
 	#define OUTPUT_HEIGHT 240
-	#define SDL_BPP 16
+	#define SDL_BPP 32
 	
 	#undef NONBLOCKING_AUDIO
 	#undef IPU_SCALE
 #endif
+
+
+
+
+
 
 #ifdef NONBLOCKING_AUDIO
 	#ifdef SDL_TRIPLEBUF
