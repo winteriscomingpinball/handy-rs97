@@ -165,7 +165,7 @@ void handy_audio_loop()
 		SDL_LockAudio();
 		sdl_write_buffer(gAudioBuffer, len);
 		SDL_UnlockAudio();
-		gAudioBufferPointer = 0;	
+		//gAudioBufferPointer = 0;	
 		
 	}
 }
