@@ -53,6 +53,10 @@
 //  closed source version.                                                  //
 //////////////////////////////////////////////////////////////////////////////
 
+#define SOUND_OUTPUT_FREQUENCY 2756
+#define SOUND_SAMPLES_SIZE 128
+
+
 #ifndef __HANDY_SOUND_H__
 #define __HANDY_SOUND_H__
 
