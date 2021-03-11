@@ -25,16 +25,49 @@
 #include <cstring>
 #include <ctime>
 #include <cctype>
+#include <fcntl.h>
+#include <stdlib.h>
 
 #include <alsa/asoundlib.h>
 
 #include "handy_sdl_main.h"
 #include "handy_sound.h"
 
+
+
+int fd_vol;
+
+int read_value_from_fd(int fd, int is_bool)
+{
+  int result; // r0
+  unsigned char buf[10]; // [sp+Ch] [bp-1Ch] BYREF
+
+  *(char *)&buf[4] = 0;
+  *(char *)&buf[8] = 0;
+  *(char *)buf = 0;
+  
+  //lseek(fd, is_bool, 0);
+  lseek(fd, 0, 0);
+  //puts ("reading value");
+  read(fd, buf, 10);
+  //printf("read_value_from_fd: reading value: %s.\n", buf);
+  
+  if ( is_bool )
+    result = buf[0] != 0x30;  //check that passed result is not ascii "0"
+  else
+    result = atoi((const char *)buf);
+  return result;
+}
+
+
+
 static snd_pcm_t *handle;
 
 int handy_audio_init(void)
 {
+	fd_vol = open("/sys/devices/soc/1c24800.tp_adc/value", 0);
+	
+	
     /* If we don't want sound, return 0 */
     if(gAudioEnabled == FALSE) return 0;
 
@@ -157,6 +190,8 @@ void handy_audio_close()
 		snd_pcm_close(handle);
 		snd_config_update_free_global();
 	}
+	
+	close(fd_vol);
 }
 
 void handy_audio_loop()
@@ -164,6 +199,21 @@ void handy_audio_loop()
 	mpLynx->Update();
 	if (gAudioBufferPointer >= HANDY_AUDIO_BUFFER_SIZE/2 && gAudioEnabled)
 	{
+		
+		//get value from volume wheel and convert to a value 0-63
+	    int readVol=((4090-read_value_from_fd(fd_vol, 0))*63)/4090;
+		
+		*(unsigned long *)buf = 0;
+			*(unsigned long *)&buf[4] = 0;
+			*(unsigned long *)&buf[8] = 0;
+			*(unsigned long *)&buf[12] = 0;
+			*(unsigned long *)&buf[16] = 0;
+		  sprintf(buf, "amixer set 'head phone volume' %d &", readVol);
+		  
+		  system(buf);
+		  
+	
+	
 		uint32_t f = gAudioBufferPointer;
 		gAudioBufferPointer = 0;	
 		long ret, len = f / 4;
