@@ -62,7 +62,7 @@ int handy_audio_init(void)
 	as.freq = HANDY_AUDIO_SAMPLE_FREQ;
 	as.format = AUDIO_S16;
 	as.channels = 2;
-	as.samples = samplerate / 30;
+	as.samples = HANDY_AUDIO_SAMPLE_FREQ / 30;
 	for (i = 1; i < as.samples; i<<=1);
 	as.samples = i;
 	as.callback = audio_callback;
