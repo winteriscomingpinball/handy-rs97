@@ -115,7 +115,7 @@ int handy_audio_init(void)
 	aspec.format   = AUDIO_S16LSB;
 	aspec.freq     = HANDY_AUDIO_SAMPLE_FREQ;
 	aspec.channels = 2;
-	aspec.samples  = HANDY_AUDIO_BUFFER_SIZE;
+	aspec.samples  = HANDY_AUDIO_BUFFER_SIZE/4;
 	aspec.callback = (sdl_callback);
 	aspec.userdata = NULL;
 	
