@@ -212,7 +212,7 @@ void handy_audio_loop()
 			*(unsigned long *)&buf[8] = 0;
 			*(unsigned long *)&buf[12] = 0;
 			*(unsigned long *)&buf[16] = 0;
-		  sprintf(buf, "amixer set 'head phone volume' %d &", readVol);
+		  sprintf(buf, "amixer set 'head phone volume' %d >/dev/null 2>&1 &", readVol);
 		  
 		  system(buf);
 		  
