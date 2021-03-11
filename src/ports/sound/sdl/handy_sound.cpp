@@ -112,7 +112,7 @@ int handy_audio_init(void)
 	SDL_AudioSpec aspec, obtained;
 	
 	
-	aspec.format   = AUDIO_S16SYS;
+	aspec.format   = AUDIO_S16LSB;
 	aspec.freq     = HANDY_AUDIO_SAMPLE_FREQ;
 	aspec.channels = 2;
 	aspec.samples  = HANDY_AUDIO_BUFFER_SIZE;
