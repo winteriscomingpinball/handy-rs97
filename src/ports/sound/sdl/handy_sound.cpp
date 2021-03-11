@@ -159,9 +159,9 @@ void handy_audio_loop()
 	if (gAudioBufferPointer >= HANDY_AUDIO_BUFFER_SIZE/2 && gAudioEnabled)
 	{
 		uint32_t f = gAudioBufferPointer;
-		SDL_LockAudio();
-		sdl_write_buffer(gAudioBuffer, HANDY_AUDIO_BUFFER_SIZE * 4);
-		SDL_UnlockAudio();
+		//SDL_LockAudio();
+		//sdl_write_buffer(gAudioBuffer, HANDY_AUDIO_BUFFER_SIZE * 4);
+		//SDL_UnlockAudio();
 		gAudioBufferPointer = 0;	
 		
 	}
