@@ -34,8 +34,6 @@
 
 //static snd_pcm_t *handle;
 
-static volatile int audio_done;
-
 
 static int32_t BUFFSIZE;
 static uint8_t *buffer;
@@ -82,7 +80,6 @@ static void sdl_write_buffer(uint8_t* data, int32_t len)
 void sdl_callback(void *unused, uint8_t *stream, int32_t len)
 {
 	sdl_read_buffer((uint8_t *)stream, len);
-	audio_done =1;
 }
 
 
@@ -118,7 +115,7 @@ int handy_audio_init(void)
 	aspec.format   = AUDIO_S16SYS;
 	aspec.freq     = HANDY_AUDIO_SAMPLE_FREQ;
 	aspec.channels = 2;
-	aspec.samples  = HANDY_AUDIO_SAMPLE_FREQ/30;
+	aspec.samples  = HANDY_AUDIO_BUFFER_SIZE;
 	aspec.callback = (sdl_callback);
 	aspec.userdata = NULL;
 	
@@ -162,12 +159,9 @@ void handy_audio_loop()
 	if (gAudioEnabled)
 	{
 		uint32_t f = gAudioBufferPointer;
-		//SDL_LockAudio();
-		//sdl_write_buffer(gAudioBuffer, HANDY_AUDIO_BUFFER_SIZE * 4);
-		//SDL_UnlockAudio();
-		//while (!audio_done)
-			SDL_Delay(4);
-		//audio_done = 0;
+		SDL_LockAudio();
+		sdl_write_buffer(gAudioBuffer, HANDY_AUDIO_BUFFER_SIZE * 4);
+		SDL_UnlockAudio();
 		gAudioBufferPointer = 0;	
 		
 	}
