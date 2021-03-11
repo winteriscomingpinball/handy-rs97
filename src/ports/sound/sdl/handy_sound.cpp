@@ -73,7 +73,10 @@ static void sdl_write_buffer(uint8_t* data, int32_t len)
 		buffered_bytes += 4;
 	}
 }
-
+void sdl_callback(void *unused, uint8_t *stream, int32_t len)
+{
+	sdl_read_buffer((uint8_t *)stream, len);
+}
 
 	
 
