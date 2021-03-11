@@ -40,10 +40,6 @@ static int32_t buffered_bytes = 0;
 //static snd_pcm_t *handle;
 
 
-void sdl_callback(void *unused, uint8_t *stream, int32_t len)
-{
-	sdl_read_buffer((uint8_t *)stream, len);
-}
 
 static int32_t sdl_read_buffer(uint8_t* data, int32_t len)
 {
@@ -66,6 +62,10 @@ static int32_t sdl_read_buffer(uint8_t* data, int32_t len)
 	return len;
 }
 
+void sdl_callback(void *unused, uint8_t *stream, int32_t len)
+{
+	sdl_read_buffer((uint8_t *)stream, len);
+}
 
 
 
