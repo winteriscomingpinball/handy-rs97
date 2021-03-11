@@ -44,12 +44,23 @@ static int32_t buffered_bytes = 0;
 static volatile int audio_done;
 
 
+static void sdl_write_buffer(uint8_t* data, int32_t len)
+{
+	for(uint32_t i = 0; i < len; i += 4) 
+	{
+		if(buffered_bytes == BUFFSIZE) return; // just drop samples
+		*(int32_t*)((char*)(buffer + buf_write_pos)) = *(int32_t*)((char*)(data + i));
+		//memcpy(buffer + buf_write_pos, data + i, 4);
+		buf_write_pos = (buf_write_pos + 4) % BUFFSIZE;
+		buffered_bytes += 4;
+	}
+}
 
 
 void sdl_callback(void *unused, uint8_t *stream, int32_t len)
 {
 	//sdl_read_buffer((uint8_t *)stream, len);
-	memcpy(stream, gAudioBuffer, len);
+	memcpy(stream, buffer, len);
 	audio_done = 1;
 }
 
@@ -133,13 +144,11 @@ void handy_audio_loop()
 		gAudioBufferPointer = 0;	
 		long ret, len = f / 4;
 		
-		while (!audio_done)
-			SDL_Delay(4);
-		audio_done = 0;
+		
 	
-		//SDL_LockAudio();
-		//sdl_write_buffer(gAudioBuffer, len);
-		//SDL_UnlockAudio();
+		SDL_LockAudio();
+		sdl_write_buffer(gAudioBuffer, len);
+		SDL_UnlockAudio();
 		gAudioBufferPointer = 0;	
 		
 	}
