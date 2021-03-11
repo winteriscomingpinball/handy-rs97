@@ -220,14 +220,19 @@ void handy_audio_loop()
 			volcheckcounter=0;
 	}
 		
+		if (readVol!= prev_readVol){
+		prev_readVol=readVol;
 		*(unsigned long *)buf = 0;
-			*(unsigned long *)&buf[4] = 0;
-			*(unsigned long *)&buf[8] = 0;
-			*(unsigned long *)&buf[12] = 0;
-			*(unsigned long *)&buf[16] = 0;
-		  sprintf(buf, "amixer set 'head phone volume' %d >/dev/null 2>&1 &", readVol);
-		  
-		  system(buf);
+				*(unsigned long *)&buf[4] = 0;
+				*(unsigned long *)&buf[8] = 0;
+				*(unsigned long *)&buf[12] = 0;
+				*(unsigned long *)&buf[16] = 0;
+			  sprintf(buf, "amixer set 'head phone volume' %d >/dev/null 2>&1 &", readVol);
+			  
+			  
+		//set volume with amixer
+		system(buf);
+	}
 		  
 	
 	
