@@ -32,7 +32,7 @@
 #include "handy_sdl_main.h"
 #include "handy_sound.h"
 
-static snd_pcm_t *handle;
+//static snd_pcm_t *handle;
 
 int handy_audio_init(void)
 {
