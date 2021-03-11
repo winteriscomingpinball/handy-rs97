@@ -42,9 +42,9 @@ int handy_audio_init(void)
     SDL_AudioSpec aspec, obtained;
 
 	/* Add some silence to the buffer */
-	buffered_bytes = 0;
-	buf_read_pos = 0;
-	buf_write_pos = 0;
+	//buffered_bytes = 0;
+	//buf_read_pos = 0;
+	//buf_write_pos = 0;
 
 	aspec.format   = AUDIO_S16SYS;
 	aspec.freq     = HANDY_AUDIO_SAMPLE_FREQ;
