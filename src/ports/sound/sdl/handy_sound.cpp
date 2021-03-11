@@ -51,6 +51,10 @@ static void audio_callback(void *blah, byte *stream, int len)
 
 int handy_audio_init(void)
 {
+	
+	int i;
+	SDL_AudioSpec as;
+	
     /* If we don't want sound, return 0 */
     if(gAudioEnabled == FALSE) return 0;
 
