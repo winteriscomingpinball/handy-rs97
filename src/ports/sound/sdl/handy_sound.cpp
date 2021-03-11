@@ -32,7 +32,57 @@
 #include "handy_sdl_main.h"
 #include "handy_sound.h"
 
+
+static uint32_t buf_read_pos = 0;
+static uint32_t buf_write_pos = 0;
+static int32_t buffered_bytes = 0;
+
 //static snd_pcm_t *handle;
+
+
+void sdl_callback(void *unused, uint8_t *stream, int32_t len)
+{
+	sdl_read_buffer((uint8_t *)stream, len);
+}
+
+static int32_t sdl_read_buffer(uint8_t* data, int32_t len)
+{
+	if (buffered_bytes >= len) 
+	{
+		if(buf_read_pos + len <= HANDY_AUDIO_BUFFER_SIZE ) 
+		{
+			memcpy(data, gAudioBuffer + buf_read_pos, len);
+		} 
+		else 
+		{
+			int32_t tail = HANDY_AUDIO_BUFFER_SIZE - buf_read_pos;
+			memcpy(data, gAudioBuffer + buf_read_pos, tail);
+			memcpy(data + tail, gAudioBuffer, len - tail);
+		}
+		buf_read_pos = (buf_read_pos + len) % HANDY_AUDIO_BUFFER_SIZE;
+		buffered_bytes -= len;
+	}
+
+	return len;
+}
+
+
+
+
+static void sdl_write_buffer(uint8_t* data, int32_t len)
+{
+	for(uint32_t i = 0; i < len; i += 4) 
+	{
+		if(buffered_bytes == HANDY_AUDIO_BUFFER_SIZE) return; // just drop samples
+		*(int32_t*)((char*)(gAudioBuffer + buf_write_pos)) = *(int32_t*)((char*)(data + i));
+		//memcpy(buffer + buf_write_pos, data + i, 4);
+		buf_write_pos = (buf_write_pos + 4) % HANDY_AUDIO_BUFFER_SIZE;
+		buffered_bytes += 4;
+	}
+}
+
+
+
 
 int handy_audio_init(void)
 {
