@@ -41,7 +41,7 @@
 static volatile int audio_done;
 
 	
-static void audio_callback(void *blah, byte *stream, int len)
+static void audio_callback(void *blah, uint8_t *stream, int len)
 {
 	memcpy(stream, gAudioBuffer, len);
 	audio_done = 1;
