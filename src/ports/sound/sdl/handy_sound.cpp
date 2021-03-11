@@ -94,7 +94,7 @@ int handy_audio_init(void)
 #endif
 
     //BUFFSIZE = (HANDY_AUDIO_BUFFER_SIZE * 2 * 2) * 4;
-	BUFFSIZE = (HANDY_AUDIO_BUFFER_SIZE * 2 * 2) * 4
+	BUFFSIZE = (HANDY_AUDIO_BUFFER_SIZE * 2 * 2) * 4;
 	
 	buffer = (uint8_t *) malloc(BUFFSIZE);
 
