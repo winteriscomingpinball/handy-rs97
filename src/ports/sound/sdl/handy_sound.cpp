@@ -43,6 +43,27 @@ static int32_t buffered_bytes = 0;
 
 static volatile int audio_done;
 
+static int32_t sdl_read_buffer(uint8_t* data, int32_t len)
+{
+	if (buffered_bytes >= len) 
+	{
+		if(buf_read_pos + len <= BUFFSIZE ) 
+		{
+			memcpy(data, buffer + buf_read_pos, len);
+		} 
+		else 
+		{
+			int32_t tail = BUFFSIZE - buf_read_pos;
+			memcpy(data, buffer + buf_read_pos, tail);
+			memcpy(data + tail, buffer, len - tail);
+		}
+		buf_read_pos = (buf_read_pos + len) % BUFFSIZE;
+		buffered_bytes -= len;
+	}
+
+	return len;
+}
+	
 
 static void sdl_write_buffer(uint8_t* data, int32_t len)
 {
@@ -59,8 +80,8 @@ static void sdl_write_buffer(uint8_t* data, int32_t len)
 
 void sdl_callback(void *unused, uint8_t *stream, int32_t len)
 {
-	//sdl_read_buffer((uint8_t *)stream, len);
-	memcpy(stream, buffer, len);
+	sdl_read_buffer((uint8_t *)stream, len);
+	//memcpy(stream, buffer, len);
 	audio_done = 1;
 }
 
