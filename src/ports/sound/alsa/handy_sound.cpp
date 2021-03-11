@@ -33,7 +33,11 @@
 #include "handy_sdl_main.h"
 #include "handy_sound.h"
 
+#define VOLCHECKCOUNT 60
 
+int volcheckcounter=VOLCHECKCOUNT;
+int readVol=0;
+int prev_readVol=0;
 
 int fd_vol;
 
@@ -205,7 +209,16 @@ void handy_audio_loop()
 		
 		
 		//get value from volume wheel and convert to a value 0-63
-	    int readVol=((4090-read_value_from_fd(fd_vol, 0))*63)/4090;
+		volcheckcounter++;
+		if(volcheckcounter>=VOLCHECKCOUNT){	
+			readVol=read_value_from_fd(fd_vol, 0);
+			if (readVol>4090){
+				readVol=4090;
+			}
+			
+			readVol=((4090-readVol)*63)/4090;
+			volcheckcounter=0;
+	}
 		
 		*(unsigned long *)buf = 0;
 			*(unsigned long *)&buf[4] = 0;
