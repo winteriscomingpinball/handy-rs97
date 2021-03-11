@@ -156,15 +156,16 @@ void handy_audio_close()
 void handy_audio_loop()
 {
 	mpLynx->Update();
-	if (gAudioEnabled)
+	if (gAudioBufferPointer >= HANDY_AUDIO_BUFFER_SIZE/2 && gAudioEnabled)
 	{
 		uint32_t f = gAudioBufferPointer;
+		gAudioBufferPointer = 0;	
+		long len = f / 4;
+		
 		SDL_LockAudio();
-		sdl_write_buffer(gAudioBuffer, HANDY_AUDIO_BUFFER_SIZE * 4);
+		sdl_write_buffer(gAudioBuffer, len);
 		SDL_UnlockAudio();
 		gAudioBufferPointer = 0;	
 		
 	}
 }
-
-
