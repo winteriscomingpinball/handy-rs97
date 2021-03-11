@@ -34,13 +34,11 @@
 
 //static snd_pcm_t *handle;
 
-
 static int32_t BUFFSIZE;
 static uint8_t *buffer;
 static uint32_t buf_read_pos = 0;
 static uint32_t buf_write_pos = 0;
 static int32_t buffered_bytes = 0;
-
 
 static int32_t sdl_read_buffer(uint8_t* data, int32_t len)
 {
@@ -63,6 +61,7 @@ static int32_t sdl_read_buffer(uint8_t* data, int32_t len)
 	return len;
 }
 
+
 static void sdl_write_buffer(uint8_t* data, int32_t len)
 {
 	for(uint32_t i = 0; i < len; i += 4) 
@@ -76,11 +75,7 @@ static void sdl_write_buffer(uint8_t* data, int32_t len)
 }
 
 
-
-void sdl_callback(void *unused, uint8_t *stream, int32_t len)
-{
-	sdl_read_buffer((uint8_t *)stream, len);
-}
+	
 
 
 
@@ -115,7 +110,7 @@ int handy_audio_init(void)
 	aspec.format   = AUDIO_S16LSB;
 	aspec.freq     = HANDY_AUDIO_SAMPLE_FREQ;
 	aspec.channels = 2;
-	aspec.samples  = HANDY_AUDIO_BUFFER_SIZE/16;
+	aspec.samples  = HANDY_AUDIO_BUFFER_SIZE;
 	aspec.callback = (sdl_callback);
 	aspec.userdata = NULL;
 	
