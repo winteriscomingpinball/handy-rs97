@@ -196,9 +196,13 @@ void handy_audio_close()
 
 void handy_audio_loop()
 {
+	
 	mpLynx->Update();
 	if (gAudioBufferPointer >= HANDY_AUDIO_BUFFER_SIZE/2 && gAudioEnabled)
 	{
+		
+		char buf[64];
+		
 		
 		//get value from volume wheel and convert to a value 0-63
 	    int readVol=((4090-read_value_from_fd(fd_vol, 0))*63)/4090;
