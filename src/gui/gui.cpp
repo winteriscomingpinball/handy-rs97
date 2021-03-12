@@ -77,7 +77,7 @@ void gui_Flip();
 void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y);
 void get_config_path();
 
-void setRom(char *menuRomName);
+void setRom();
 
 
 int gui_LoadSlot = 0;
@@ -126,7 +126,7 @@ MENUITEM gui_MainMenuItems[] = {
 
 MENUITEM gui_RomBrowserItems[] = {
 	{(const char *)"Exit", 0, 0, 0, &handy_sdl_quit}, // extern in handy_sdl_main.cpp
-	{(const char *)"Rom1", 0, 0, 0, &setRom["LynxQuest_[AtariGamer].lnx"]} // extern in handy_sdl_main.cpp
+	{(const char *)"Rom1", 0, 0, 0, &setRom} // extern in handy_sdl_main.cpp
 
 };
 
@@ -150,9 +150,9 @@ MENU gui_ConfigMenu = { 2
 
 
 
-void setRom(char *menuRomName){
+void setRom(){
 	
-	snprintf(romname, sizeof(romname), "%s", menuRomName);
+	snprintf(romname, sizeof(romname), "%s", "LynxQuest_[AtariGamer].lnx");
 }
 
 
