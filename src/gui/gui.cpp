@@ -159,7 +159,7 @@ void setRom(){
 	
 	//handy_sdl_core_init(romname);
 	runRomBrowser=0;
-	emulation=0;
+	emulation=1;
 	
 }
 
