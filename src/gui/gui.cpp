@@ -337,26 +337,26 @@ void ShowMenu(MENU *menu)
 	for(i = 0; i < menu->itemNum; i++, mi++) {
 		int fg_color;
 		if(menu->itemCur == i) fg_color = COLOR_ACTIVE_ITEM; else fg_color = COLOR_INACTIVE_ITEM;
-	#ifdef RS90
-		ShowMenuItem(10, (13 + i) * 8, mi, fg_color);
-	#else
-		ShowMenuItem(10, (18 + i) * 8, mi, fg_color);
-	#endif
+	//#ifdef RS90
+		ShowMenuItem(1, (12 + i) * 8, mi, fg_color);
+	//#else
+	//	ShowMenuItem(1, (18 + i) * 8, mi, fg_color);
+	//#endif
 	}
 
 	// show preview screen
 	ShowPreview(menu);
 
 	// print info string
-	#ifdef RS90
-	print_string("Handy : " __DATE__ " build", COLOR_HELP_TEXT, COLOR_BG, 20, 2);
-	print_string("Port by gameblabla", COLOR_HELP_TEXT, COLOR_BG, 48, 88);
-	print_string("[B] = Return to game", COLOR_HELP_TEXT, COLOR_BG, 4, 158-8);
-	#else
-	print_string("Press B to return to the game", COLOR_HELP_TEXT, COLOR_BG, 56, 220);
-	print_string("Handy libretro " __DATE__ " build", COLOR_HELP_TEXT, COLOR_BG, 40, 2);
-	print_string("Port by gameblabla", COLOR_HELP_TEXT, COLOR_BG, 80, 12);
-	#endif
+	//#ifdef RS90
+	print_string("Handy : " __DATE__ " build", COLOR_HELP_TEXT, COLOR_BG, 5, 2);
+	//print_string("Port by gameblabla", COLOR_HELP_TEXT, COLOR_BG, 48, 88);
+	print_string("[1] = Return to game", COLOR_HELP_TEXT, COLOR_BG, 4, 11);
+	//#else
+	//print_string("Press B to return to the game", COLOR_HELP_TEXT, COLOR_BG, 56, 220);
+	//print_string("Handy libretro " __DATE__ " build", COLOR_HELP_TEXT, COLOR_BG, 40, 2);
+	//print_string("Port by gameblabla", COLOR_HELP_TEXT, COLOR_BG, 80, 12);
+	//#endif
 }
 
 /*
