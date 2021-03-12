@@ -623,12 +623,14 @@ bool CSystem::ContextSave(const char *context)
    if(!fwrite(&gThrottleMaxPercentage,sizeof(ULONG),1,fp)) status=0;
    if(!fwrite(&gThrottleLastTimerCount,sizeof(ULONG),1,fp)) status=0;
    if(!fwrite(&gThrottleNextCycleCheckpoint,sizeof(ULONG),1,fp)) status=0;
-
+   
+   printf("Writing save file: This is status after block of writes: %d\n",status);
    ULONG tmp=gTimerCount;
    if(!fwrite(&tmp,sizeof(ULONG),1,fp)) status=0;
 
    if(!fwrite(&gAudioLastUpdateCycle,sizeof(ULONG),1,fp)) status=0;
-
+   
+   printf("Writing save file: This is status after audio data: %d\n",status);
    // Save other device contexts
    if(!mMemMap->ContextSave(fp)) status=0;
    if(!mCart->ContextSave(fp)) status=0;
@@ -638,6 +640,8 @@ bool CSystem::ContextSave(const char *context)
    if(!mMikie->ContextSave(fp)) status=0;
    if(!mSusie->ContextSave(fp)) status=0;
    if(!mCpu->ContextSave(fp)) status=0;
+   
+   printf("Writing save file: This is status after context writes: %d\n",status);
 
    fclose(fp);
    return status;
