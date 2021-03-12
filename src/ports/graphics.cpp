@@ -127,7 +127,7 @@ int Handy_Init_Video()
 {
 	if (!mainSurface)
 	{
-		mainSurface = SDL_SetVideoMode(SDL_OUTPUT_WIDTH, SDL_OUTPUT_HEIGHT, 16, SDL_FLAGS);
+		mainSurface = SDL_SetVideoMode(240, 180, 16, SDL_FLAGS);
 		if (!mainSurface)
 		{
 			printf("Could not create primary SDL surface: %s\n", SDL_GetError());
@@ -166,7 +166,7 @@ void Handy_Change_Res(uint8_t menu)
 	
 	if (menu == 1)
 	{
-		mainSurface = SDL_SetVideoMode(SDL_OUTPUT_WIDTH, SDL_OUTPUT_HEIGHT, 16, SDL_FLAGS);
+		mainSurface = SDL_SetVideoMode(240, 180, 16, SDL_FLAGS);
 	}
 	else
 	{
