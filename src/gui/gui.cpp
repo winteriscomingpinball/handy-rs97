@@ -77,6 +77,9 @@ void gui_Flip();
 void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y);
 void get_config_path();
 
+void setRom(char *menuRomName);
+
+
 int gui_LoadSlot = 0;
 int gui_ImageScaling = 0;
 int gui_Frameskip = 0;
@@ -129,7 +132,7 @@ MENUITEM gui_RomBrowserItems[] = {
 
 MENU gui_MainMenu = { 5, 0, (MENUITEM *)&gui_MainMenuItems };
 
-MENU gui_RomBrowser = { 1, 0, (MENUITEM *)&gui_RomBrowserItems };
+MENU gui_RomBrowser = { 2, 0, (MENUITEM *)&gui_RomBrowserItems };
 
 MENUITEM gui_ConfigMenuItems[] = {
 #ifndef IPU_SCALE
