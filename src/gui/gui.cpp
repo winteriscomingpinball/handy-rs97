@@ -247,7 +247,7 @@ void ShowPreview(MENU *menu)
 	SDL_Rect dst, dst2;
 	SDL_Surface *tmp;
 
-	if(menu == &gui_MainMenu && (menu->itemCur == 2 || menu->itemCur == 3)) 
+	if(menu == &gui_MainMenu && (menu->itemCur == 1 || menu->itemCur == 2)) 
 	{
 		if(loadslot != gui_LoadSlot) 
 		{
