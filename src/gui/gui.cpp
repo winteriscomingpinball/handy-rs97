@@ -77,6 +77,8 @@ void gui_Flip();
 void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y);
 void get_config_path();
 
+void gui_RunRomBrowser();
+
 void setRom();
 
 
@@ -116,6 +118,7 @@ const char* gui_YesNo[] = {"no", "yes"};
 
 MENUITEM gui_MainMenuItems[] = {
 	/* It's unusable on the RS-90, disable */
+	{(const char *)"ROM browser", 0, 0, 0, &gui_RunRomBrowser},
 	{(const char *)"Config", 0, 0, 0, &gui_ConfigMenuRun},
 	{(const char *)"Load state: ", &gui_LoadSlot, 9, 0, &gui_LoadState},
 	{(const char *)"Save state: ", &gui_LoadSlot, 9, 0, &gui_SaveState},
@@ -130,7 +133,7 @@ MENUITEM gui_RomBrowserItems[] = {
 
 };
 
-MENU gui_MainMenu = { 5, 0, (MENUITEM *)&gui_MainMenuItems };
+MENU gui_MainMenu = { 6, 0, (MENUITEM *)&gui_MainMenuItems };
 
 MENU gui_RomBrowser = { 2, 0, (MENUITEM *)&gui_RomBrowserItems };
 
@@ -478,6 +481,10 @@ void gui_Run()
 	gui_ClearScreen();
 }
 
+void gui_RunRomBrowser(){
+	runRomBrowser=1;
+	gui_Run();
+}
 
 
 void gui_ConfigMenuRun()
