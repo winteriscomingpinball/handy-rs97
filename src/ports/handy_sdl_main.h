@@ -78,6 +78,7 @@ extern ULONG			*mpLynxBuffer;
 extern CSystem 		    *mpLynx;
 extern int				 mFrameSkip;
 extern int				 mpBpp;
+extern char romname[512];
 
 /* Handy/SDL declarations */
 extern int			 	LynxWidth;				// Lynx SDL screen width
