@@ -438,6 +438,15 @@ void gui_Init()
 void gui_Run()
 {
 	gui_ClearScreen();
+	gui_MainMenuRun(&gui_MainMenu);
+	//gui_RomBrowser
+	//gui_MainMenuRun(&gui_RomBrowser);
+	gui_ClearScreen();
+}
+
+void gui_RunRomBrowser()
+{
+	gui_ClearScreen();
 	//gui_MainMenuRun(&gui_MainMenu);
 	//gui_RomBrowser
 	gui_MainMenuRun(&gui_RomBrowser);

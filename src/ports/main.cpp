@@ -340,8 +340,9 @@ int main(int argc, char *argv[])
     // As SDL is not initialized yet, gui_LoadFile calls gui_video_early_init()
     if (argc < 2) 
     {
-		printf("We need a ROM to load\n");
-		return 1;
+		//printf("We need a ROM to load\n");
+		//return 1;
+		gui_RunRomBrowser();
     }
     else
     {
