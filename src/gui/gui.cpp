@@ -478,7 +478,7 @@ void gui_Run()
 	if(runRomBrowser){
 		allowExit=0;
 		gui_MainMenuRun(&gui_RomBrowser);
-		runRomBrowser=0;
+		//runRomBrowser=0;
 	}
 	else{
 		gui_MainMenuRun(&gui_MainMenu);
