@@ -347,7 +347,9 @@ int main(int argc, char *argv[])
 		//return 1;
 		
 		runRomBrowser=1;
-		romname[0]=NULL;
+		//romname[0]=NULL;
+		gui_Init()
+		gui_Run()
 		//emulation=1;
 		
     }
@@ -427,7 +429,7 @@ int main(int argc, char *argv[])
         
         while( handy_sdl_update() )
         {
-            if(!gSystemHalt && runRomBrowser)
+            if(!gSystemHalt)
             {
 				handy_audio_loop();
             }
