@@ -115,7 +115,14 @@ MENUITEM gui_MainMenuItems[] = {
 	{(const char *)"Exit", 0, 0, 0, &handy_sdl_quit} // extern in handy_sdl_main.cpp
 };
 
+
+MENUITEM gui_RomBrowserItems[] = {
+	{(const char *)"Exit", 0, 0, 0, &handy_sdl_quit} // extern in handy_sdl_main.cpp
+};
+
 MENU gui_MainMenu = { 5, 0, (MENUITEM *)&gui_MainMenuItems };
+
+MENU gui_RomBrowser = { 1, 0, (MENUITEM *)&gui_RomBrowser };
 
 MENUITEM gui_ConfigMenuItems[] = {
 #ifndef IPU_SCALE
@@ -431,7 +438,9 @@ void gui_Init()
 void gui_Run()
 {
 	gui_ClearScreen();
-	gui_MainMenuRun(&gui_MainMenu);
+	//gui_MainMenuRun(&gui_MainMenu);
+	//gui_RomBrowser
+	gui_MainMenuRun(&gui_RomBrowser);
 	gui_ClearScreen();
 }
 
