@@ -55,10 +55,16 @@
 extern int Throttle; // show fps, from handy_sdl_main.cpp
 extern char rom_name_with_no_ext[128]; // name if current rom, used for load/save state
 
+
+
+
 /* SDL declarations */
 extern SDL_Surface *HandyBuffer; // Our Handy/SDL display buffer
 extern SDL_Surface *mainSurface; // Our Handy/SDL primary display
 SDL_Surface *menuSurface = NULL, *Game_Surface_Preview; // menu rendering
+extern bool runRomBrowser;
+
+
 
 int Invert = 0;
 
