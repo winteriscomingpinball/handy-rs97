@@ -347,7 +347,7 @@ int main(int argc, char *argv[])
 		//return 1;
 		
 		runRomBrowser=1;
-		romname=NULL;
+		romname[0]=NULL;
 		
     }
     else
