@@ -242,7 +242,7 @@ void handy_sdl_rom_info(void)
         default:
             // Allright, this shouldn't be necessary, but just in case.
             printf("Unknown format!\n");
-            //exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE);
             break;
     }
     
@@ -407,17 +407,10 @@ int main(int argc, char *argv[])
     printf("[DONE]\n");
 
     // Setup of Handy Core video
-    if(!runRomBrowser) handy_sdl_video_init(mpBpp);
+    handy_sdl_video_init(mpBpp);
 
     // Init gui (move to some other place later)
     gui_Init();
-	
-	
-	if(runRomBrowser){
-	    //gui_Init();
-		gui_Run();
-		
-	}
 
     printf("Starting Lynx Emulation...\n");
     while(!emulation)
