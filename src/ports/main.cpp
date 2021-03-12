@@ -347,12 +347,13 @@ int main(int argc, char *argv[])
 		//return 1;
 		
 		runRomBrowser=1;
-		
+		romname=NULL;
 		
     }
     else
     {
 		snprintf(romname, sizeof(romname), "%s", argv[1]);
+		
 	}
 
     for ( i=0; (i < argc || argv[i] != NULL ); i++ )
@@ -380,7 +381,7 @@ int main(int argc, char *argv[])
     printf("[DONE]\n");
 
     // Primary initalise of Handy - should be called AFTER SDL_Init() but BEFORE handy_sdl_video_setup()
-    if (!runRomBrowser) handy_sdl_core_init(romname);
+    handy_sdl_core_init(romname);
 
     // Initialise Handy/SDL video 
     if(!Handy_Init_Video())
