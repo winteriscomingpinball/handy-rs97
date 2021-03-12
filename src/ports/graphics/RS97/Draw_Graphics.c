@@ -66,7 +66,7 @@ void handy_sdl_draw_graphics(void)
 				default:
 					//bitmap_scale(0, 0, 102, 160, 180, 240, 160, 320-240, HandyBuffer->pixels, mainSurface->pixels);
 					//bitmap_scale(0, Cut_Off_Y, LynxWidth, LynxHeight, mainSurface->w, mainSurface->h, LynxWidth, 0, HandyBuffer->pixels, mainSurface->pixels);
-					bitmap_scale(0, 0, LynxWidth, LynxHeight, 240, mainSurface->h, LynxWidth, 0, HandyBuffer->pixels, mainSurface->pixels);
+					bitmap_scale(0, 0, LynxWidth, LynxHeight, 240, mainSurface->h, LynxWidth, 320-240, HandyBuffer->pixels, mainSurface->pixels);
 				break;
 				
 			}
