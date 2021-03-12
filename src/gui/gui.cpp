@@ -153,6 +153,8 @@ MENU gui_ConfigMenu = { 2
 void setRom(){
 	
 	snprintf(romname, sizeof(romname), "%s", "LynxQuest_[AtariGamer].lnx");
+	runRomBrowser=0;
+	
 }
 
 
