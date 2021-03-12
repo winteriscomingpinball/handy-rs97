@@ -419,7 +419,7 @@ void gui_MainMenuRun(MENU *menu)
 void get_config_path()
 {
 	//snprintf(config_full_path, sizeof(config_full_path), "%s/.handy", getenv("HOME"));
-	snprintf(config_full_path, sizeof(config_full_path), "%s/.handy", "./save");
+	snprintf(config_full_path, sizeof(config_full_path), "./save");
 	mkdir(config_full_path, 0755);
 }
 
