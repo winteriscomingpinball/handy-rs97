@@ -33,7 +33,7 @@
 #include "handy_sdl_main.h"
 #include "handy_sound.h"
 
-#define VOLCHECKCOUNT 60
+#define VOLCHECKCOUNT 120
 
 int volcheckcounter=VOLCHECKCOUNT;
 int readVol=0;
