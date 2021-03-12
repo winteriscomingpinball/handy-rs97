@@ -383,8 +383,14 @@ int main(int argc, char *argv[])
     printf("[DONE]\n");
 	
 	
+	 // Init gui (move to some other place later)
+    gui_Init();
 	
-
+	if(runRomBrowser){
+		gui_Run();
+	
+	
+	}
 
 
 
@@ -409,12 +415,7 @@ int main(int argc, char *argv[])
     // Setup of Handy Core video
     handy_sdl_video_init(mpBpp);
 
-    // Init gui (move to some other place later)
-    gui_Init();
-	
-	if(runRomBrowser){
-		gui_Run();
-	}
+   
 
     printf("Starting Lynx Emulation...\n");
     while(!emulation)

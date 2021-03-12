@@ -57,7 +57,6 @@ extern char rom_name_with_no_ext[128]; // name if current rom, used for load/sav
 
 
 
-
 /* SDL declarations */
 extern SDL_Surface *HandyBuffer; // Our Handy/SDL display buffer
 extern SDL_Surface *mainSurface; // Our Handy/SDL primary display
@@ -124,6 +123,8 @@ MENUITEM gui_MainMenuItems[] = {
 
 MENUITEM gui_RomBrowserItems[] = {
 	{(const char *)"Exit", 0, 0, 0, &handy_sdl_quit} // extern in handy_sdl_main.cpp
+	{(const char *)"Rom1", 0, 0, 0, &setRom("LynxQuest_[AtariGamer].lnx")} // extern in handy_sdl_main.cpp
+
 };
 
 MENU gui_MainMenu = { 5, 0, (MENUITEM *)&gui_MainMenuItems };
@@ -142,6 +143,14 @@ MENU gui_ConfigMenu = { 2
 	-1
 	#endif
 , 0, (MENUITEM *)&gui_ConfigMenuItems };
+
+
+
+
+void setRom(*char menuRomName){
+	
+	snprintf(romname, sizeof(romname), "%s", menuRomName);
+}
 
 
 /*
