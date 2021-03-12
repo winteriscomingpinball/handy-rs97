@@ -53,16 +53,20 @@ void handy_sdl_draw_graphics(void)
 		{
 			switch(gui_ImageScaling)
 			{
-				case 0:
-					bitmap_scale(0,Cut_Off_Y,
-					LynxWidth,LynxHeight,
-					LYNX_DOUBLE_WIDTH,mainSurface->h,
-					HandyBuffer->w, mainSurface->w-LYNX_DOUBLE_WIDTH,
-					(uint16_t* __restrict__)HandyBuffer->pixels,(uint16_t* __restrict__)mainSurface->pixels+(mainSurface->w-(LYNX_DOUBLE_WIDTH))/2+(mainSurface->h-(mainSurface->h))/2*mainSurface->w);
+				// case 0:
+					// bitmap_scale(0,Cut_Off_Y,
+					// LynxWidth,LynxHeight,
+					// LYNX_DOUBLE_WIDTH,mainSurface->h,
+					// HandyBuffer->w, mainSurface->w-LYNX_DOUBLE_WIDTH,
+					// (uint16_t* __restrict__)HandyBuffer->pixels,(uint16_t* __restrict__)mainSurface->pixels+(mainSurface->w-(LYNX_DOUBLE_WIDTH))/2+(mainSurface->h-(mainSurface->h))/2*mainSurface->w);
+				// break;
+				// case 1:
+					// bitmap_scale(0, Cut_Off_Y, LynxWidth, LynxHeight, mainSurface->w, mainSurface->h, LynxWidth, 0, HandyBuffer->pixels, mainSurface->pixels);
+				// break;
+				default:
+					bitmap_scale(0, 0, 102, 160, 240, 180, 160, 320-240, HandyBuffer->pixels, mainSurface->pixels);
 				break;
-				case 1:
-					bitmap_scale(0, Cut_Off_Y, LynxWidth, LynxHeight, mainSurface->w, mainSurface->h, LynxWidth, 0, HandyBuffer->pixels, mainSurface->pixels);
-				break;
+				
 			}
 		}
 	}
