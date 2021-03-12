@@ -41,7 +41,10 @@
 
 #define color16(red, green, blue) ((red << 11) | (green << 5) | blue)
 
-#define COLOR_BG            color16(05, 03, 02)
+//#define COLOR_BG            color16(05, 03, 02)
+
+#define COLOR_BG            color16(0, 0, 0)
+
 #define COLOR_ROM_INFO      color16(22, 36, 26)
 #define COLOR_ACTIVE_ITEM   color16(31, 63, 31)
 #define COLOR_INACTIVE_ITEM color16(13, 40, 18)
