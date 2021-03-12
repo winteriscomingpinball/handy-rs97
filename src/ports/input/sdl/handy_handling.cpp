@@ -80,6 +80,8 @@ uint32_t dpad_pressed[4] = {0, 0, 0, 0};
 
 int exitCheck=0;
 int menuCheck=0;
+int opt1Check=0;
+int opt2Check=0;
 
 //	SDL_JoystickUpdate();
 
@@ -114,6 +116,7 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 							dpad_pressed[0] = 1;
 							#endif
 							menuCheck+=1;
+							opt1Check+=1;
 							switch(Invert)
 							{
 								case 0:
@@ -132,6 +135,7 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 							#ifndef NOJOYSTICK
 							dpad_pressed[1] = 1;
 							#endif
+							opt2Check+=1;
 							switch(Invert)
 							{
 								case 0:
@@ -190,6 +194,8 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 							mask|=BUTTON_PAUSE;
 							exitCheck+=1;
 							menuCheck+=1;
+							opt1Check+=1;
+							opt2Check+=1;
 							break;
 						}
 						
@@ -224,6 +230,16 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 						}
 
 				}
+			if (opt1Check){
+				mask|=BUTTON_OPT1;
+				mask&= ~BUTTON_LEFT;
+				mask&= ~BUTTON_PAUSE;
+			}
+			if (opt2Check){
+				mask|=BUTTON_OPT2;
+				mask&= ~BUTTON_RIGHT;
+				mask&= ~BUTTON_PAUSE;
+			}
 			break;
 			case SDL_KEYUP:
 				switch(event.key.keysym.sym) 
@@ -254,6 +270,7 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 							dpad_pressed[0] = 0;
 							#endif
 							menuCheck-=1;
+							opt1Check=0;
 							switch(Invert)
 							{
 								case 0:
@@ -272,6 +289,7 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 							#ifndef NOJOYSTICK
 							dpad_pressed[1] = 0;
 							#endif
+							opt2Check=0;
 							switch(Invert)
 							{
 								case 0:
@@ -344,8 +362,14 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 
 						case BT_PAUSE: { // Lynx PAUSE
 							mask&= ~BUTTON_PAUSE;
+							
+							mask&= ~BUTTON_OPT1;
+							
+							mask&= ~BUTTON_OPT2;
 							exitCheck-=1;
 							menuCheck-=1;
+							opt2Check=0;
+							opt1Check=0;
 							break;
 						}
 
