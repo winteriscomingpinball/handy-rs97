@@ -54,7 +54,7 @@
 /* external references */
 extern int Throttle; // show fps, from handy_sdl_main.cpp
 extern char rom_name_with_no_ext[128]; // name if current rom, used for load/save state
-
+extern char romname[512];
 
 
 /* SDL declarations */
