@@ -383,11 +383,7 @@ int main(int argc, char *argv[])
     printf("[DONE]\n");
 	
 	
-	if(runRomBrowser){
-	    gui_Init();
-		gui_Run();
-		
-	}
+	
 
 
 
@@ -415,6 +411,13 @@ int main(int argc, char *argv[])
 
     // Init gui (move to some other place later)
     gui_Init();
+	
+	
+	if(runRomBrowser){
+	    //gui_Init();
+		gui_Run();
+		
+	}
 
     printf("Starting Lynx Emulation...\n");
     while(!emulation)
