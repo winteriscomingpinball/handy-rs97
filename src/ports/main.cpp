@@ -79,7 +79,7 @@ extern SDL_Surface* menuSurface;
 SDL_Joystick *joystick;
 #endif
 
-bool runRomBrowser=1;
+bool runRomBrowser=0;
 
 /* Handy declarations */
 ULONG				*mpLynxBuffer;
@@ -411,6 +411,10 @@ int main(int argc, char *argv[])
 
     // Init gui (move to some other place later)
     gui_Init();
+	
+	if(runRomBrowser){
+		gui_Run();
+	}
 
     printf("Starting Lynx Emulation...\n");
     while(!emulation)
