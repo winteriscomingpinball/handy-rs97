@@ -369,7 +369,6 @@ int main(int argc, char *argv[])
     }
     gAudioEnabled = TRUE;
 	
-	do{
 
     // Initalising SDL for Audio and Video support
     printf("Initialising SDL...           ");
@@ -466,7 +465,6 @@ int main(int argc, char *argv[])
     }
     
     Cleanup_mess();
-	}while(runRomBrowser);
 	
     return 0;
 }
