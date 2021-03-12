@@ -281,6 +281,8 @@ static void Cleanup_mess(void)
 }
 
 
+
+
 char rom_name_with_no_ext[128]; // rom name with no extension, used for savestates
 
 void handy_sdl_core_init(char *romname)
@@ -463,8 +465,9 @@ int main(int argc, char *argv[])
         }
     }
     
-    Cleanup_mess();
+    
 	}while(runRomBrowser);
+	Cleanup_mess();
 	
     return 0;
 }
