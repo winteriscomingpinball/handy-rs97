@@ -79,7 +79,7 @@ extern SDL_Surface* menuSurface;
 SDL_Joystick *joystick;
 #endif
 
-bool runRomBrowser=0;
+bool runRomBrowser=1;
 
 /* Handy declarations */
 ULONG				*mpLynxBuffer;
