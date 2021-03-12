@@ -67,6 +67,8 @@ extern int emulation;
 
 int Invert = 0;
 
+int allowExit=1;
+
 void gui_LoadState();
 void gui_SaveState();
 void gui_FileBrowserRun();
@@ -160,6 +162,7 @@ void setRom(){
 	//handy_sdl_core_init(romname);
 	runRomBrowser=0;
 	emulation=1;
+	allowExit=1;
 	
 }
 
@@ -428,7 +431,7 @@ void gui_MainMenuRun(MENU *menu)
 				}
 				// DINGOO B - exit or back to previous menu
 				//if(gui_event.key.keysym.sym == SDLK_ESCAPE) return;
-				if(gui_event.key.keysym.sym == SDLK_RSHIFT && !runRomBrowser) return;
+				if(gui_event.key.keysym.sym == SDLK_RSHIFT && allowExit) return;
 				// DINGOO UP - arrow down
 				if(gui_event.key.keysym.sym == SDLK_UP) if(--menu->itemCur < 0) menu->itemCur = menu->itemNum - 1;
 				// DINGOO DOWN - arrow up
@@ -473,11 +476,13 @@ void gui_Run()
 {
 	gui_ClearScreen();
 	if(runRomBrowser){
+		allowExit=0;
 		gui_MainMenuRun(&gui_RomBrowser);
 		runRomBrowser=0;
 	}
 	else{
 		gui_MainMenuRun(&gui_MainMenu);
+		allowExit=1;
 	}
 	//gui_RomBrowser
 	//gui_MainMenuRun(&gui_RomBrowser);
@@ -486,6 +491,7 @@ void gui_Run()
 
 void gui_RunRomBrowser(){
 	runRomBrowser=1;
+	allowExit=0;
 	gui_Run();
 }
 
