@@ -62,7 +62,7 @@ extern SDL_Surface *HandyBuffer; // Our Handy/SDL display buffer
 extern SDL_Surface *mainSurface; // Our Handy/SDL primary display
 SDL_Surface *menuSurface = NULL, *Game_Surface_Preview; // menu rendering
 extern bool runRomBrowser;
-
+extern void handy_sdl_core_init(char *romname);
 
 
 int Invert = 0;
@@ -156,6 +156,8 @@ MENU gui_ConfigMenu = { 2
 void setRom(){
 	
 	snprintf(romname, sizeof(romname), "%s", "LynxQuest_[AtariGamer].lnx");
+	
+	handy_sdl_core_init(romname);
 	runRomBrowser=0;
 	
 }
