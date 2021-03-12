@@ -132,7 +132,8 @@ MENUITEM gui_MainMenuItems[] = {
 
 MENUITEM gui_RomBrowserItems[] = {
 	{(const char *)"Exit", 0, 0, 0, &handy_sdl_quit}, // extern in handy_sdl_main.cpp
-	{(const char *)"Rom1", 0, 0, 0, &setRom} // extern in handy_sdl_main.cpp
+	{(const char *)"Rom1", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
+	{(const char *)"Rom2", 0, 0, 0, &setRom} // extern in handy_sdl_main.cpp
 
 };
 
@@ -158,8 +159,18 @@ MENU gui_ConfigMenu = { 2
 
 void setRom(){
 	
-	snprintf(romname, sizeof(romname), "%s", "LynxQuest_[AtariGamer].lnx");
+	switch(gui_RomBrowserItems[gui_RomBrowser.itemCur].itemName){
+	case("Rom1"):
+		snprintf(romname, sizeof(romname), "%s", "LynxQuest_[AtariGamer].lnx");
+		break;
+	case("Rom2"):
+		snprintf(romname, sizeof(romname), "%s", "Luchsenstein3D_[AtariGamer].lnx");
+		break;
 	
+	
+	default:
+	return;
+	}
 	handy_sdl_core_reinit(romname);
 	runRomBrowser=0;
 	//emulation=1;
