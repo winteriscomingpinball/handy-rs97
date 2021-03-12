@@ -159,11 +159,11 @@ MENU gui_ConfigMenu = { 2
 
 void setRom(){
 	
-	switch(gui_RomBrowserItems[gui_RomBrowser.itemCur].itemName){
-	case("Rom1"):
+	switch(gui_RomBrowser.itemCur){
+	case(1):
 		snprintf(romname, sizeof(romname), "%s", "LynxQuest_[AtariGamer].lnx");
 		break;
-	case("Rom2"):
+	case(2):
 		snprintf(romname, sizeof(romname), "%s", "Luchsenstein3D_[AtariGamer].lnx");
 		break;
 	
