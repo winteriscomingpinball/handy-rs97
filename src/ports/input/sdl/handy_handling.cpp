@@ -79,7 +79,7 @@ uint32_t dpad_pressed[4] = {0, 0, 0, 0};
 
 
 int exitCheck=0;
-int menuCheck=0;
+int menuCheck=4;
 int opt1Check=0;
 int opt2Check=0;
 
@@ -502,9 +502,9 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 	}
 	#endif
     
-	if (exitCheck==4){
-		handy_sdl_quit();
-	}
+	//if (exitCheck==4){
+	//	handy_sdl_quit();
+	//}
 	
 	if (menuCheck==4){
 		#ifdef IPU_SCALE
@@ -522,6 +522,13 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 		dpad_pressed[1] = 0;
 		dpad_pressed[2] = 0;
 		dpad_pressed[3] = 0;
+		opt1Check=0;
+		opt2Check=0;
+		menuCheck=0;
+		//mask&= ~BUTTON_OPT1;
+		//mask&= ~BUTTON_OPT2;
+		//mask&= ~BUTTON_PAUSE;
+		
 		#endif
 	}
 	
