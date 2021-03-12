@@ -271,7 +271,7 @@ void ShowPreview(MENU *menu)
 		if (Game_Surface_Preview) 
 		{
 			//#ifdef RS90
-			dst.x = 72;
+			dst.x = 72-50;
 			dst.y = 16;
 			dst.w = 96;
 			dst.h = 64;
@@ -298,7 +298,7 @@ void ShowPreview(MENU *menu)
 		if (HandyBuffer) 
 		{
 			//#ifdef RS90
-			dst.x = 72;
+			dst.x = 72-50;
 			dst.y = 16;
 			dst.w = 96;
 			dst.h = 64;
@@ -338,9 +338,9 @@ void ShowMenu(MENU *menu)
 		int fg_color;
 		if(menu->itemCur == i) fg_color = COLOR_ACTIVE_ITEM; else fg_color = COLOR_INACTIVE_ITEM;
 	#ifdef RS90
-		ShowMenuItem(56, (13 + i) * 8, mi, fg_color);
+		ShowMenuItem(10, (13 + i) * 8, mi, fg_color);
 	#else
-		ShowMenuItem(80, (18 + i) * 8, mi, fg_color);
+		ShowMenuItem(10, (18 + i) * 8, mi, fg_color);
 	#endif
 	}
 
