@@ -160,7 +160,7 @@ void setRom(){
 	snprintf(romname, sizeof(romname), "%s", "LynxQuest_[AtariGamer].lnx");
 	
 	//handy_sdl_core_init(romname);
-	runRomBrowser=0;
+	//runRomBrowser=0;
 	emulation=1;
 	allowExit=1;
 	
