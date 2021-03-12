@@ -95,6 +95,8 @@ int              LynxRotate;                // Lynx ROM rotation type
 
 int                 emulation = 0;
 
+char romname[512];
+
 
 /*
     Name                :     handy_sdl_update
@@ -326,7 +328,7 @@ int main(int argc, char *argv[])
     int i;
     SDL_Event handy_sdl_event;
     char load_filename[512];
-    char romname[512];
+    
     
     // get bios path
     getcwd(load_filename, 512);
