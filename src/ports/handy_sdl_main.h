@@ -66,6 +66,8 @@
 #define     HANDY_VERSION 		"Handy 0.95 WIN32"
 #define     HANDY_BASE_FPS		60
 
+extern bool runRomBrowser;
+
 /* SDL declarations */
 extern SDL_Surface		*HandyBuffer; 			// Our Handy/SDL display buffer
 extern SDL_Surface		*mainSurface;	 		// Our Handy/SDL primary display
