@@ -365,9 +365,17 @@ void ShowMenu(MENU *menu)
 
 	// print info string
 	//#ifdef RS90
+	
+	
+	
 	print_string("Handy : " __DATE__ " build", COLOR_HELP_TEXT, COLOR_BG, 5, 2);
+	if(!runRomBrowser){
 	//print_string("Port by gameblabla", COLOR_HELP_TEXT, COLOR_BG, 48, 88);
 	print_string("[1] = Return to game", COLOR_HELP_TEXT, COLOR_BG, 4, 11);
+	
+	}else{
+		print_string("[Start] = Choose rom", COLOR_HELP_TEXT, COLOR_BG, 4, 11);
+	}
 	//#else
 	//print_string("Press B to return to the game", COLOR_HELP_TEXT, COLOR_BG, 56, 220);
 	//print_string("Handy libretro " __DATE__ " build", COLOR_HELP_TEXT, COLOR_BG, 40, 2);
@@ -406,7 +414,7 @@ void gui_MainMenuRun(MENU *menu)
 				// DINGOO DOWN - arrow up
 				if(gui_event.key.keysym.sym == SDLK_DOWN) if(++menu->itemCur == menu->itemNum) menu->itemCur = 0;
 				// DINGOO LEFT - decrease parameter value
-				if(gui_event.key.keysym.sym == SDLK_LEFT) {
+				if(gui_event.key.keysym.sym == SDLK_LEFT && !runRomBrowser) {
 					if(mi->itemPar != NULL && *mi->itemPar > 0) *mi->itemPar -= 1;
 				}
 				// DINGOO RIGHT - increase parameter value
