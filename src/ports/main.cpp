@@ -407,7 +407,7 @@ int main(int argc, char *argv[])
     printf("[DONE]\n");
 
     // Setup of Handy Core video
-    handy_sdl_video_init(mpBpp);
+    if(!runRomBrowser) handy_sdl_video_init(mpBpp);
 
     // Init gui (move to some other place later)
     gui_Init();
