@@ -465,9 +465,8 @@ int main(int argc, char *argv[])
         }
     }
     
-    
+    Cleanup_mess();
 	}while(runRomBrowser);
-	Cleanup_mess();
 	
     return 0;
 }
