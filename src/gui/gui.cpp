@@ -408,13 +408,13 @@ void gui_MainMenuRun(MENU *menu)
 				}
 				// DINGOO B - exit or back to previous menu
 				//if(gui_event.key.keysym.sym == SDLK_ESCAPE) return;
-				if(gui_event.key.keysym.sym == SDLK_RSHIFT) return;
+				if(gui_event.key.keysym.sym == SDLK_RSHIFT && !runRomBrowser) return;
 				// DINGOO UP - arrow down
 				if(gui_event.key.keysym.sym == SDLK_UP) if(--menu->itemCur < 0) menu->itemCur = menu->itemNum - 1;
 				// DINGOO DOWN - arrow up
 				if(gui_event.key.keysym.sym == SDLK_DOWN) if(++menu->itemCur == menu->itemNum) menu->itemCur = 0;
 				// DINGOO LEFT - decrease parameter value
-				if(gui_event.key.keysym.sym == SDLK_LEFT && !runRomBrowser) {
+				if(gui_event.key.keysym.sym == SDLK_LEFT ) {
 					if(mi->itemPar != NULL && *mi->itemPar > 0) *mi->itemPar -= 1;
 				}
 				// DINGOO RIGHT - increase parameter value
