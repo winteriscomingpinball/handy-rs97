@@ -166,7 +166,7 @@ void Handy_Change_Res(uint8_t menu)
 	
 	if (menu == 1)
 	{
-		mainSurface = SDL_SetVideoMode(SDL_OUTPUT_WIDTH, SDL_OUTPUT_HEIGHT, 16, SDL_FLAGS);
+		mainSurface = SDL_SetVideoMode(240, 180, 16, SDL_FLAGS);
 	}
 	else
 	{
