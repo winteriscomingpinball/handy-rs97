@@ -230,12 +230,12 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 						}
 
 				}
-			if (opt1Check){
+			if (opt1Check==2){
 				mask|=BUTTON_OPT1;
 				mask&= ~BUTTON_LEFT;
 				mask&= ~BUTTON_PAUSE;
 			}
-			if (opt2Check){
+			if (opt2Check==2){
 				mask|=BUTTON_OPT2;
 				mask&= ~BUTTON_RIGHT;
 				mask&= ~BUTTON_PAUSE;
