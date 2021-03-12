@@ -348,8 +348,7 @@ int main(int argc, char *argv[])
 		
 		runRomBrowser=1;
 		//romname[0]=NULL;
-		gui_Init();
-		gui_Run();
+		
 		//emulation=1;
 		
     }
@@ -382,6 +381,16 @@ int main(int argc, char *argv[])
 		joystick = SDL_JoystickOpen(0);
 	#endif
     printf("[DONE]\n");
+	
+	
+	if(runRomBrowser){
+	    gui_Init();
+		gui_Run();
+		
+	}
+
+
+
 
     // Primary initalise of Handy - should be called AFTER SDL_Init() but BEFORE handy_sdl_video_setup()
     handy_sdl_core_init(romname);
