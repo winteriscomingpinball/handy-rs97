@@ -414,6 +414,8 @@ int main(int argc, char *argv[])
    // Init gui (move to some other place later)
     gui_Init();
 	
+	
+	do{
 	if(runRomBrowser){
 		gui_Run();
 		handy_sdl_core_init(romname);
@@ -458,5 +460,7 @@ int main(int argc, char *argv[])
     }
     
     Cleanup_mess();
+	}while(runRomBrowser);
+	
     return 0;
 }
