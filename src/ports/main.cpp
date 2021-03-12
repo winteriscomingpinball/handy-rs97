@@ -242,7 +242,7 @@ void handy_sdl_rom_info(void)
         default:
             // Allright, this shouldn't be necessary, but just in case.
             printf("Unknown format!\n");
-            //exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE);
             break;
     }
     
