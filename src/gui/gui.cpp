@@ -126,7 +126,7 @@ MENUITEM gui_MainMenuItems[] = {
 
 MENUITEM gui_RomBrowserItems[] = {
 	{(const char *)"Exit", 0, 0, 0, &handy_sdl_quit}, // extern in handy_sdl_main.cpp
-	{(const char *)"Rom1", 0, 0, 0, &setRom("LynxQuest_[AtariGamer].lnx")} // extern in handy_sdl_main.cpp
+	{(const char *)"Rom1", 0, 0, 0, &setRom["LynxQuest_[AtariGamer].lnx"]} // extern in handy_sdl_main.cpp
 
 };
 
