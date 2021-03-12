@@ -270,7 +270,7 @@ void ShowPreview(MENU *menu)
 		
 		if (Game_Surface_Preview) 
 		{
-			#ifdef RS90
+			//#ifdef RS90
 			dst.x = 72;
 			dst.y = 16;
 			dst.w = 96;
@@ -279,16 +279,16 @@ void ShowPreview(MENU *menu)
 			dst2.y = 0;
 			dst2.w = LynxWidth;
 			dst2.h = LynxHeight;
-			#else
-			dst.x = 80;
-			dst.y = 24;
-			dst.w = 160;
-			dst.h = 102;
-			dst2.x = 0;
-			dst2.y = 0;
-			dst2.w = LynxWidth;
-			dst2.h = LynxHeight;
-			#endif
+			// #else
+			// dst.x = 80;
+			// dst.y = 24;
+			// dst.w = 160;
+			// dst.h = 102;
+			// dst2.x = 0;
+			// dst2.y = 0;
+			// dst2.w = LynxWidth;
+			// dst2.h = LynxHeight;
+			// #endif
 			SDL_SoftStretch(Game_Surface_Preview, &dst2, menuSurface, &dst);
 		}
 		/*for(int y = 0; y < 102; y++) memcpy((char *)menuSurface->pixels + (24 + y) * 320*2 + 80*2, prebuffer + y * 320, 320);*/
@@ -297,7 +297,7 @@ void ShowPreview(MENU *menu)
 	{
 		if (HandyBuffer) 
 		{
-			#ifdef RS90
+			//#ifdef RS90
 			dst.x = 72;
 			dst.y = 16;
 			dst.w = 96;
@@ -306,16 +306,16 @@ void ShowPreview(MENU *menu)
 			dst2.y = 0;
 			dst2.w = LynxWidth;
 			dst2.h = LynxHeight;
-			#else
-			dst.x = 80;
-			dst.y = 24;
-			dst.w = 160;
-			dst.h = 102;
-			dst2.x = 0;
-			dst2.y = 0;
-			dst2.w = LynxWidth;
-			dst2.h = LynxHeight;
-			#endif
+			// #else
+			// dst.x = 80;
+			// dst.y = 24;
+			// dst.w = 160;
+			// dst.h = 102;
+			// dst2.x = 0;
+			// dst2.y = 0;
+			// dst2.w = LynxWidth;
+			// dst2.h = LynxHeight;
+			// #endif
 			SDL_SoftStretch(HandyBuffer, &dst2, menuSurface, &dst);
 		}
 	}
