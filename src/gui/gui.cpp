@@ -139,7 +139,7 @@ MENUITEM gui_RomBrowserItems[] = {
 
 MENU gui_MainMenu = { 6, 0, (MENUITEM *)&gui_MainMenuItems };
 
-MENU gui_RomBrowser = { 2, 0, (MENUITEM *)&gui_RomBrowserItems };
+MENU gui_RomBrowser = { 3, 0, (MENUITEM *)&gui_RomBrowserItems };
 
 MENUITEM gui_ConfigMenuItems[] = {
 #ifndef IPU_SCALE
