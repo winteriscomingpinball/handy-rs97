@@ -78,6 +78,9 @@ extern SDL_Surface* menuSurface;
 #ifndef NOJOYSTICK
 SDL_Joystick *joystick;
 #endif
+
+bool runRomBrowser=0;
+
 /* Handy declarations */
 ULONG				*mpLynxBuffer;
 CSystem				*mpLynx;
@@ -342,7 +345,10 @@ int main(int argc, char *argv[])
     {
 		//printf("We need a ROM to load\n");
 		//return 1;
-		gui_RunRomBrowser();
+		
+		runRomBrowser=1;
+		
+		
     }
     else
     {
@@ -374,7 +380,7 @@ int main(int argc, char *argv[])
     printf("[DONE]\n");
 
     // Primary initalise of Handy - should be called AFTER SDL_Init() but BEFORE handy_sdl_video_setup()
-    handy_sdl_core_init(romname);
+    if (!runRomBrowser) handy_sdl_core_init(romname);
 
     // Initialise Handy/SDL video 
     if(!Handy_Init_Video())
