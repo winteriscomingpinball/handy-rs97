@@ -348,8 +348,8 @@ int main(int argc, char *argv[])
 		
 		runRomBrowser=1;
 		//romname[0]=NULL;
-		gui_Init()
-		gui_Run()
+		gui_Init();
+		gui_Run();
 		//emulation=1;
 		
     }
