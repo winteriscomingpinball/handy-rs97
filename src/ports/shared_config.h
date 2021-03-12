@@ -64,14 +64,14 @@
 	
 // #else
 	/* Zero means auto-detect */
-	#define SDL_OUTPUT_WIDTH 240
-	#define SDL_OUTPUT_HEIGHT 180
+	#define SDL_OUTPUT_WIDTH 320
+	#define SDL_OUTPUT_HEIGHT 240
 	
-	#define MENU_OUTPUT_WIDTH 240
+	#define MENU_OUTPUT_WIDTH 320
 	#define MENU_OUTPUT_HEIGHT 180
 	
-	#define OUTPUT_WIDTH 240
-	#define OUTPUT_HEIGHT 180
+	#define OUTPUT_WIDTH 320
+	#define OUTPUT_HEIGHT 240
 	#define SDL_BPP 16
 	
 	#undef NONBLOCKING_AUDIO
