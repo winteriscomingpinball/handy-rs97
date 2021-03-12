@@ -46,8 +46,8 @@
 #define COLOR_BG            color16(0, 0, 0)
 
 #define COLOR_ROM_INFO      color16(22, 36, 26)
-#define COLOR_ACTIVE_ITEM   color16(31, 63, 31)
-#define COLOR_INACTIVE_ITEM color16(13, 40, 18)
+#define COLOR_ACTIVE_ITEM   color16(255, 0, 0)
+#define COLOR_INACTIVE_ITEM color16(255, 255, 255)
 #define COLOR_FRAMESKIP_BAR color16(15, 31, 31)
 #define COLOR_HELP_TEXT     color16(16, 40, 24)
 
