@@ -269,7 +269,7 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 							#ifndef NOJOYSTICK
 							dpad_pressed[0] = 0;
 							#endif
-							menuCheck-=1;
+							menuCheck=0;
 							opt1Check=0;
 							switch(Invert)
 							{
@@ -328,7 +328,7 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 							#ifndef NOJOYSTICK
 							dpad_pressed[3] = 0;
 							#endif
-							exitCheck-=1;
+							exitCheck=0;
 							switch(Invert)
 							{
 								case 0:
@@ -347,16 +347,16 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 						case BT_A: { // Lynx A
 							if (gui_SwapAB == 1) mask&= ~BUTTON_B;
 							else mask&= ~BUTTON_A;
-							exitCheck-=1;
-							menuCheck-=1;
+							exitCheck=0;
+							menuCheck=0;
 							break;
 						}
 
 						case BT_B: { // Lynx B
 							if (gui_SwapAB == 1) mask&= ~BUTTON_A;
 							else mask&= ~BUTTON_B;
-							exitCheck-=1;
-							menuCheck-=1;
+							exitCheck=0;
+							menuCheck=0;
 							break;
 						}
 
@@ -366,8 +366,8 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 							mask&= ~BUTTON_OPT1;
 							
 							mask&= ~BUTTON_OPT2;
-							exitCheck-=1;
-							menuCheck-=1;
+							exitCheck=0;
+							menuCheck=0;
 							opt2Check=0;
 							opt1Check=0;
 							break;
