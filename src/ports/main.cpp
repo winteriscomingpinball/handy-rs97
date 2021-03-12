@@ -366,6 +366,8 @@ int main(int argc, char *argv[])
         if (!strcmp(argv[i], "-nosound"))         gAudioEnabled = FALSE;
     }
     gAudioEnabled = TRUE;
+	
+	do{
 
     // Initalising SDL for Audio and Video support
     printf("Initialising SDL...           ");
@@ -415,7 +417,7 @@ int main(int argc, char *argv[])
     
 	
 	
-	do{
+	
     gui_Init();
 	if(runRomBrowser){
 		gui_Run();
