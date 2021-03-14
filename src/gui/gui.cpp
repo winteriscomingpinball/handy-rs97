@@ -193,8 +193,8 @@ void findRoms(){
    puts("Found these ROMS...");
    
    while ((files = readdir(dirX)) != NULL){
-	           printf("%s\n", files->d_name);
-			   if(files->d_type==DT_DIR && files->d_name[0] != '.' &&   (strstr(files->d_name, ".lnx") != NULL || strstr(files->d_name, ".zip") != NULL )){
+	           //printf("%s\n", files->d_name);
+			   if(files->d_name[0] != '.' &&   (strstr(files->d_name, ".lnx") != NULL || strstr(files->d_name, ".zip") != NULL )){
 				   printf("%s\n", files->d_name);
 				   //directories[counter]=(wchar_t)files->d_name;
 				   foundRoms[romCount]=(int)files->d_name;
@@ -205,8 +205,12 @@ void findRoms(){
    
    closedir(dirX);
    
+   puts("Sorting found ROMs by name");
+   
    qsort(foundRoms,romCount,sizeof(char),cmpfunc);
    
+   
+   puts("Sorting found ROMs by name");
    for (i=0;i<ROM_PER_PAGE_COUNT;i++){
     if(foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i]){
 		gui_RomBrowserItems[i].itemName = foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i];
@@ -214,6 +218,8 @@ void findRoms(){
 		break;
 	}
    }
+   
+   puts("Finished that...");
    gui_RomBrowser.itemNum=i-1;
 }
 
