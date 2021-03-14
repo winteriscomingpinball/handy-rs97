@@ -517,6 +517,8 @@ void gui_MainMenuRun(MENU *menu)
 				if(gui_event.key.keysym.sym == SDLK_F1)
 				{
 					if(mi->itemOnA != NULL) (*mi->itemOnA)();
+					
+					if(menu==gui_RomBrowser) return;
 				}
 				// DINGOO B - exit or back to previous menu
 				//if(gui_event.key.keysym.sym == SDLK_ESCAPE) return;
