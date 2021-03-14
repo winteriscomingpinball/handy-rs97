@@ -55,6 +55,7 @@
 
 #define ROM_COUNT_LIMIT 30
 #define ROM_PER_PAGE_COUNT 5
+#define ROM_DIR "./roms"
 
 
 /* external references */
@@ -185,7 +186,7 @@ void findRoms(){
 	 char i;
 	 
 	  struct dirent *files;
-   DIR *dirX = opendir("./roms");
+   DIR *dirX = opendir(ROM_DIR);
    if (dirX == NULL){
       printf("ROM Directory cannot be opened!" );
    }
@@ -211,7 +212,7 @@ void findRoms(){
    
    
    puts("Applying ROM names to list");
-   for (i=1;i<ROM_PER_PAGE_COUNT;i++){
+   for (i=1;i<ROM_PER_PAGE_COUNT+1;i++){
     if(foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i]){
 		gui_RomBrowserItems[i].itemName = foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i];
 	}else{
@@ -228,7 +229,7 @@ void setRom(){
 	
 	
 	printf("Setting ROM name to: %s\n",foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + gui_RomBrowser.itemCur - 1]);
-	snprintf(romname, sizeof(romname), "%s", foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + gui_RomBrowser.itemCur - 1]);
+	snprintf(romname, sizeof(romname), "%s/%s", ROM_DIR,foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + gui_RomBrowser.itemCur - 1]);
 	
 	
 	handy_sdl_core_reinit(romname);
