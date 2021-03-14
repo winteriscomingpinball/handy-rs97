@@ -243,6 +243,7 @@ void setRom(){
 	runRomBrowser=0;
 	//emulation=1;
 	allowExit=1;
+	gui_MainMenuRun(&gui_MainMenu);
 	
 }
 
