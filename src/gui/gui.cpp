@@ -187,30 +187,33 @@ void findRoms(){
 	 char i;
 	 
 	  struct dirent *files;
-   DIR *dirX = opendir(ROM_DIR);
-   if (dirX == NULL){
-      printf("ROM Directory cannot be opened!" );
-   }
    
-   puts("Found these ROMS...");
    
-   while ((files = readdir(dirX)) != NULL){
-	           //printf("%s\n", files->d_name);
-			   if(files->d_name[0] != '.' &&   (strstr(files->d_name, ".lnx") != NULL || strstr(files->d_name, ".zip") != NULL )){
-				   printf("%s\n", files->d_name);
-				   //directories[counter]=(wchar_t)files->d_name;
-				   foundRoms[romCount]=(int)files->d_name;
-				   romCount++;
-				   //counter++;
+   if(!romsChecked){
+	   DIR *dirX = opendir(ROM_DIR);
+	   if (dirX == NULL){
+		  printf("ROM Directory cannot be opened!" );
+	   }
+	   
+	   puts("Found these ROMS...");
+	   
+	   while ((files = readdir(dirX)) != NULL){
+				   //printf("%s\n", files->d_name);
+				   if(files->d_name[0] != '.' &&   (strstr(files->d_name, ".lnx") != NULL || strstr(files->d_name, ".zip") != NULL )){
+					   printf("%s\n", files->d_name);
+					   //directories[counter]=(wchar_t)files->d_name;
+					   foundRoms[romCount]=(int)files->d_name;
+					   romCount++;
+					   //counter++;
+				   }
 			   }
-		   }
-   
-   closedir(dirX);
-   
-   puts("Sorting found ROMs by name");
-   
-   qsort(foundRoms,romCount,sizeof(int),cmpfunc);
-   
+	   
+	   closedir(dirX);
+	   
+	   puts("Sorting found ROMs by name");
+	   
+	   qsort(foundRoms,romCount,sizeof(int),cmpfunc);
+   }
    
    puts("Applying ROM names to list");
    for (i=0;i<ROM_PER_PAGE_COUNT;i++){
@@ -554,7 +557,7 @@ void gui_Run()
 	gui_ClearScreen();
 	if(runRomBrowser){
 		allowExit=0;
-		if(!romsChecked)findRoms();
+		findRoms();
 		gui_MainMenuRun(&gui_RomBrowser);
 		//runRomBrowser=0;
 	}
