@@ -193,7 +193,7 @@ void findRoms(){
    puts("Found these ROMS...");
    
    while ((files = readdir(dirX)) != NULL){
-			   if(files->d_type==DT_DIR && files->d_name[0] != '.' &&   (strstr(files->d_name, ".lnx") != NULL || strstr(files->d_name, ".zip") != NULL )){
+			   if(files->d_type==DT_DIR && files->d_name[0] != '.' ){
 				   printf("%s\n", files->d_name);
 				   //directories[counter]=(wchar_t)files->d_name;
 				   foundRoms[romCount]=(int)files->d_name;
