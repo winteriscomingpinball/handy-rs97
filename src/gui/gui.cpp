@@ -211,7 +211,7 @@ void findRoms(){
    
    
    puts("Applying ROM names to list");
-   for (i=0;i<ROM_PER_PAGE_COUNT;i++){
+   for (i=1;i<ROM_PER_PAGE_COUNT;i++){
     if(foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i]){
 		gui_RomBrowserItems[i].itemName = foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i];
 	}else{
@@ -220,13 +220,14 @@ void findRoms(){
    }
    
    puts("Finished that...");
-   gui_RomBrowser.itemNum=i;
+   gui_RomBrowser.itemNum=i+1;
 }
 
 
 void setRom(){
 	
 	
+	printf("Setting ROM name to: %s\n",foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + gui_RomBrowser.itemCur - 1]);
 	snprintf(romname, sizeof(romname), "%s", foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + gui_RomBrowser.itemCur - 1]);
 	
 	
