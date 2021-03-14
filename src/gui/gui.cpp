@@ -244,8 +244,8 @@ void setRom(){
 	//emulation=1;
 	allowExit=1;
 	
-	gui_MainMenu->itemCur = 0;
-	gui_RomBrowser->itemCur = 0;
+	gui_MainMenu.itemCur = 0;
+	gui_RomBrowser.itemCur = 0;
 	gui_MainMenuRun(&gui_MainMenu);
 	handy_sdl_core_reinit(romname);
 	
