@@ -522,7 +522,7 @@ void gui_MainMenuRun(MENU *menu)
 				}
 				// DINGOO B - exit or back to previous menu
 				//if(gui_event.key.keysym.sym == SDLK_ESCAPE) return;
-				if(gui_event.key.keysym.sym == SDLK_RSHIFT && allowExit) return;
+				if(gui_event.key.keysym.sym == SDLK_RSHIFT /*&& allowExit*/) return;
 				// DINGOO UP - arrow down
 				if(gui_event.key.keysym.sym == SDLK_UP) if(--menu->itemCur < 0) menu->itemCur = menu->itemNum - 1;
 				// DINGOO DOWN - arrow up
