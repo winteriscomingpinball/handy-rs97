@@ -239,11 +239,15 @@ void setRom(){
 	snprintf(romname, sizeof(romname), "%s/%s", ROM_DIR,foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + gui_RomBrowser.itemCur - 1]);
 	
 	
-	handy_sdl_core_reinit(romname);
+	
 	runRomBrowser=0;
 	//emulation=1;
 	allowExit=1;
+	
+	gui_MainMenu->itemCur = 0;
+	gui_RomBrowser->itemCur = 0;
 	gui_MainMenuRun(&gui_MainMenu);
+	handy_sdl_core_reinit(romname);
 	
 }
 
