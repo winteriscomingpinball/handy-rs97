@@ -246,11 +246,11 @@ void setRom(){
 	
 	runRomBrowser=0;
 	//emulation=1;
-	allowExit=1;
+	//allowExit=1;
 	
 	gui_MainMenu.itemCur = 0;
 	gui_RomBrowser.itemCur = 0;
-	gui_MainMenuRun(&gui_MainMenu);
+	//gui_MainMenuRun(&gui_MainMenu);
 	handy_sdl_core_reinit(romname);
 	
 }
@@ -518,7 +518,7 @@ void gui_MainMenuRun(MENU *menu)
 				{
 					if(mi->itemOnA != NULL) (*mi->itemOnA)();
 					
-					if(menu==gui_RomBrowser) return;
+					if(!allowExit) return;
 				}
 				// DINGOO B - exit or back to previous menu
 				//if(gui_event.key.keysym.sym == SDLK_ESCAPE) return;
@@ -573,8 +573,9 @@ void gui_Run()
 		//runRomBrowser=0;
 	}
 	else{
-		gui_MainMenuRun(&gui_MainMenu);
 		allowExit=1;
+		gui_MainMenuRun(&gui_MainMenu);
+		
 	}
 	//gui_RomBrowser
 	//gui_MainMenuRun(&gui_RomBrowser);
