@@ -76,7 +76,7 @@ int Invert = 0;
 
 int allowExit=1;
 
-int *foundRoms=malloc(sizeof(int)*ROM_COUNT_LIMIT);
+const char *foundRoms=malloc(sizeof(char)*ROM_COUNT_LIMIT);
 short romCount=0;
 short curRomNum=0;
 short curRomPage=0;
@@ -204,7 +204,7 @@ void findRoms(){
    
    closedir(dirX);
    
-   qsort(foundRoms,romCount,sizeof(int),cmpfunc);
+   qsort(foundRoms,romCount,sizeof(char),cmpfunc);
    
    for (i=0;i<ROM_PER_PAGE_COUNT;i++){
     if(foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i]){
