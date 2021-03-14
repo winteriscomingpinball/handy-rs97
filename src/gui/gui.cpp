@@ -79,7 +79,7 @@ int allowExit=1;
 int *foundRoms=malloc(sizeof(int)*ROM_COUNT_LIMIT);
 short romCount=0;
 short curRomNum=0;
-short curRomPage
+short curRomPage=0;
 short romPageCount=0;
 
 void gui_LoadState();
