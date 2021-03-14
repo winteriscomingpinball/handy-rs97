@@ -224,7 +224,7 @@ void findRoms(){
    puts("Finished that...");
    gui_RomBrowser.itemNum=i+1;
    
-   romsChecked
+   romsChecked=1;
 }
 
 
