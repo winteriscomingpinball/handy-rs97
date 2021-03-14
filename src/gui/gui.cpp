@@ -220,7 +220,7 @@ void findRoms(){
    }
    
    puts("Finished that...");
-   gui_RomBrowser.itemNum=i-1;
+   gui_RomBrowser.itemNum=i;
 }
 
 
