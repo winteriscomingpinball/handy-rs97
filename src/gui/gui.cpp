@@ -82,6 +82,7 @@ short romCount=0;
 short curRomNum=0;
 short curRomPage=0;
 short romPageCount=0;
+bool romsChecked=0;
 
 void gui_LoadState();
 void gui_SaveState();
@@ -212,7 +213,7 @@ void findRoms(){
    
    
    puts("Applying ROM names to list");
-   for (i=1;i<ROM_PER_PAGE_COUNT+1;i++){
+   for (i=0;i<ROM_PER_PAGE_COUNT;i++){
     if(foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i]){
 		gui_RomBrowserItems[i].itemName = foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i];
 	}else{
@@ -222,6 +223,8 @@ void findRoms(){
    
    puts("Finished that...");
    gui_RomBrowser.itemNum=i+1;
+   
+   romsChecked
 }
 
 
@@ -550,7 +553,7 @@ void gui_Run()
 	gui_ClearScreen();
 	if(runRomBrowser){
 		allowExit=0;
-		findRoms();
+		if(!romsChecked)findRoms();
 		gui_MainMenuRun(&gui_RomBrowser);
 		//runRomBrowser=0;
 	}
