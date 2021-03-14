@@ -424,7 +424,7 @@ int main(int argc, char *argv[])
 		gui_Run();
 		handy_sdl_core_init(romname);
 		handy_sdl_video_init(mpBpp);
-		emulation=0;
+		//emulation=0;
 	
 	
 	}
