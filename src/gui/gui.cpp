@@ -95,7 +95,7 @@ void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y);
 void get_config_path();
 
 void gui_RunRomBrowser();
-void gui_MainMenuRun(MENU *menu);
+
 
 void setRom();
 
@@ -172,6 +172,9 @@ MENU gui_ConfigMenu = { 2
 	#endif
 , 0, (MENUITEM *)&gui_ConfigMenuItems };
 
+
+
+void gui_MainMenuRun(MENU *menu);
 
 int cmpfunc (const void * a, const void * b ) {
     const char *pa = *(const char**)a;
