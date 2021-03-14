@@ -27,6 +27,8 @@
 #include <libgen.h>
 #include <errno.h>
 
+
+
 #include "gui.h"
 #include "font.h"
 
@@ -51,6 +53,10 @@
 #define COLOR_FRAMESKIP_BAR color16(15, 31, 31)
 #define COLOR_HELP_TEXT     color16(16, 40, 24)
 
+#define ROM_COUNT_LIMIT 30
+#define ROM_PER_PAGE_COUNT 5
+
+
 /* external references */
 extern int Throttle; // show fps, from handy_sdl_main.cpp
 extern char rom_name_with_no_ext[128]; // name if current rom, used for load/save state
@@ -69,6 +75,12 @@ extern int emulation;
 int Invert = 0;
 
 int allowExit=1;
+
+int *foundRoms=malloc(sizeof(int)*ROM_COUNT_LIMIT);
+short romCount=0;
+short curRomNum=0;
+short curRomPage
+short romPageCount=0;
 
 void gui_LoadState();
 void gui_SaveState();
@@ -132,14 +144,17 @@ MENUITEM gui_MainMenuItems[] = {
 
 MENUITEM gui_RomBrowserItems[] = {
 	{(const char *)"Exit", 0, 0, 0, &handy_sdl_quit}, // extern in handy_sdl_main.cpp
-	{(const char *)"Rom1", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
-	{(const char *)"Rom2", 0, 0, 0, &setRom} // extern in handy_sdl_main.cpp
+	{(const char *)".", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
+	{(const char *)".", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
+	{(const char *)".", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
+	{(const char *)".", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
+	{(const char *)".", 0, 0, 0, &setRom} // extern in handy_sdl_main.cpp
 
 };
 
 MENU gui_MainMenu = { 6, 0, (MENUITEM *)&gui_MainMenuItems };
 
-MENU gui_RomBrowser = { 3, 0, (MENUITEM *)&gui_RomBrowserItems };
+MENU gui_RomBrowser = { ROM_PER_PAGE_COUNT+1, 0, (MENUITEM *)&gui_RomBrowserItems };
 
 MENUITEM gui_ConfigMenuItems[] = {
 #ifndef IPU_SCALE
@@ -155,22 +170,59 @@ MENU gui_ConfigMenu = { 2
 , 0, (MENUITEM *)&gui_ConfigMenuItems };
 
 
+int cmpfunc (const void * a, const void * b ) {
+    const char *pa = *(const char**)a;
+    const char *pb = *(const char**)b;
+
+    return strcmp(pa,pb);
+}
+
+
+
+void findRoms(){
+	char dir[20]="";
+	 char savdir[20]="";
+	 char i;
+	 
+	  struct dirent *files;
+   DIR *dirX = opendir("./roms");
+   if (dirX == NULL){
+      printf("ROM Directory cannot be opened!" );
+   }
+   
+   puts("Found these ROMS...");
+   
+   while ((files = readdir(dirX)) != NULL){
+			   if(files->d_type==DT_DIR && files->d_name[0] != '.' &&   (strstr(files->d_name, ".lnx") != NULL || strstr(files->d_name, ".zip") != NULL ){
+				   printf("%s\n", files->d_name);
+				   //directories[counter]=(wchar_t)files->d_name;
+				   foundRoms[counter]=(int)files->d_name;
+				   romCount++;
+				   //counter++;
+			   }
+		   }
+   
+   closedir(dirX);
+   
+   qsort(foundRoms,romCount,sizeof(int),cmpfunc);
+   
+   for (i=0;i<ROM_PER_PAGE_COUNT;i++){
+    if(foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i]){
+		gui_RomBrowserItems[i].itemName = foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i];
+	}else{
+		break;
+	}
+   }
+   gui_RomBrowser.itemNum=i-1;
+}
 
 
 void setRom(){
 	
-	switch(gui_RomBrowser.itemCur){
-	case(1):
-		snprintf(romname, sizeof(romname), "%s", "LynxQuest_[AtariGamer].lnx");
-		break;
-	case(2):
-		snprintf(romname, sizeof(romname), "%s", "Luchsenstein3D_[AtariGamer].lnx");
-		break;
+	
+	snprintf(romname, sizeof(romname), "%s", foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + gui_RomBrowser.itemCur - 1]);
 	
 	
-	default:
-	return;
-	}
 	handy_sdl_core_reinit(romname);
 	runRomBrowser=0;
 	//emulation=1;
@@ -489,6 +541,7 @@ void gui_Run()
 	gui_ClearScreen();
 	if(runRomBrowser){
 		allowExit=0;
+		findRoms();
 		gui_MainMenuRun(&gui_RomBrowser);
 		//runRomBrowser=0;
 	}
