@@ -320,9 +320,10 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 		
 			for(h = 8*size; h; h--) {
 				dst = (Uint16 *)s->pixels + (y+(8*size)-h)*s->w + x;
-				charPixelh=h/size;
+				charPixelh=(h+(size-1)/size;
 				for(w = 8*size; w; w--) {
-					charPixelw=w/size+1;
+					
+					charPixelw=(w+(size-1)/size;
 					Uint16 color = bg_color; // background
 				    if((gui_font[a*8 + (8-charPixelh)] >> charPixelw) & 1) color = fg_color; // test bits 876543210
 				 					
