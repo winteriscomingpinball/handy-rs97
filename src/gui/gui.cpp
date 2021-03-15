@@ -114,7 +114,7 @@ int done = 0; // flag to indicate exit status
 char config_full_path[MAX__PATH];
 
 typedef struct {
-	const char *itemName;
+	char *itemName;
 	int *itemPar;
 	int itemParMaxValue;
 	const char **itemParName;
@@ -136,22 +136,22 @@ const char* gui_YesNo[] = {"no", "yes"};
 
 MENUITEM gui_MainMenuItems[] = {
 	/* It's unusable on the RS-90, disable */
-	{(const char *)"ROM browser", 0, 0, 0, &gui_RunRomBrowser},
-	{(const char *)"Config", 0, 0, 0, &gui_ConfigMenuRun},
-	{(const char *)"Load state: ", &gui_LoadSlot, 9, 0, &gui_LoadState},
-	{(const char *)"Save state: ", &gui_LoadSlot, 9, 0, &gui_SaveState},
-	{(const char *)"Reset", 0, 0, 0, &gui_Reset},
-	{(const char *)"Exit", 0, 0, 0, &handy_sdl_quit} // extern in handy_sdl_main.cpp
+	{(char *)"ROM browser", 0, 0, 0, &gui_RunRomBrowser},
+	{(char *)"Config", 0, 0, 0, &gui_ConfigMenuRun},
+	{(char *)"Load state: ", &gui_LoadSlot, 9, 0, &gui_LoadState},
+	{(char *)"Save state: ", &gui_LoadSlot, 9, 0, &gui_SaveState},
+	{(char *)"Reset", 0, 0, 0, &gui_Reset},
+	{(char *)"Exit", 0, 0, 0, &handy_sdl_quit} // extern in handy_sdl_main.cpp
 };
 
 
 MENUITEM gui_RomBrowserItems[] = {
-	{(const char *)"Exit", 0, 0, 0, &handy_sdl_quit}, // extern in handy_sdl_main.cpp
-	{(const char *)".", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
-	{(const char *)".", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
-	{(const char *)".", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
-	{(const char *)".", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
-	{(const char *)".", 0, 0, 0, &setRom} // extern in handy_sdl_main.cpp
+	{(char *)"Exit", 0, 0, 0, &handy_sdl_quit}, // extern in handy_sdl_main.cpp
+	{(char *)".", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
+	{(char *)".", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
+	{(char *)".", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
+	{(char *)".", 0, 0, 0, &setRom}, // extern in handy_sdl_main.cpp
+	{(char *)".", 0, 0, 0, &setRom} // extern in handy_sdl_main.cpp
 
 };
 
