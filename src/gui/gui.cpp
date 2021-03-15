@@ -217,7 +217,7 @@ void findRoms(){
 	   puts("Sorting found ROMs by name");
 	   
 	   qsort(foundRoms,romCount,sizeof(int),cmpfunc);
-   }
+   //}
    
    puts("Applying ROM names to list");
    for (i=0;i<ROM_PER_PAGE_COUNT;i++){
