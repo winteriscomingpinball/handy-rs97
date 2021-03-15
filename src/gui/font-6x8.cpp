@@ -1,6 +1,6 @@
 //sourced from here: https://github.com/idispatch/raster-fonts
 
-// #include "font.h"
+#include "font.h"
 
 // #if 0
 // #ifndef FONT_H_
