@@ -240,8 +240,8 @@ void setupFrameBuffer(){
 	if (ioctl(dispfile, DISP_CMD_LAYER_GET_INFO, &args) < 0)
 		perror("ioctl: 0x43 - DISP_CMD_LAYER_GET_INFO");
 	
-	layerinfo.fb.size.width=144;
-	layerinfo.fb.size.height=160;
+	layerinfo.fb.size.width=240;
+	layerinfo.fb.size.height=180;
 	
 	layerinfo.fb.src_win.height=240;
 	layerinfo.fb.src_win.height=180;
