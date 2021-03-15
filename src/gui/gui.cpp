@@ -317,7 +317,7 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 		}
 	}else{
 		
-		for (charPixel){
+		
 			for(h = 8*size; h; h--) {
 				dst = (Uint16 *)s->pixels + (y+(8*size)-h)*s->w + x;
 				charPixelh=h/size;
@@ -330,10 +330,10 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 					
 				}
 			}
-		}
-	}
 		
 	}
+		
+	
 	if(SDL_MUSTLOCK(s)) SDL_UnlockSurface(s);
 }
 
