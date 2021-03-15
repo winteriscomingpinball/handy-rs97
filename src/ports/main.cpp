@@ -221,7 +221,7 @@ void setupFrameBuffer(){
 	var.xres=240;
 	var.yres_virtual=180;
 	var.xres_virtual=240;
-	var.bits_per_pixel=32;
+	var.bits_per_pixel=16;
 	
 	//use this to set framebuffer
 	ioctl(fh, 0x4601, &var);//FBIOPUT_VSCREENINFO
