@@ -73,6 +73,9 @@
 #include <sys/types.h>
 
 #include <sys/ioctl.h>
+ #include <fcntl.h>
+ 
+ 
 #include <stdio.h>
 
 #include <linux/fb.h>
