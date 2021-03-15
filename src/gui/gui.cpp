@@ -190,9 +190,14 @@ void findRoms(){
 	 char savdir[20]="";
 	 char i;
 	 
+	 int remainder=0;
+	 
 	  struct dirent *files;
    
-   romCount=0;
+   romCount=-1;
+   romPageCount=0;
+   
+   
    //if(!romsChecked){
 	   DIR *dirX = opendir(ROM_DIR);
 	   if (dirX == NULL){
@@ -206,11 +211,20 @@ void findRoms(){
 				   if(files->d_name[0] != '.' &&   (strstr(files->d_name, ".lnx") != NULL || strstr(files->d_name, ".zip") != NULL )){
 					   printf("%s\n", files->d_name);
 					   //directories[counter]=(wchar_t)files->d_name;
+					   if(romCount<ROM_COUNT_LIMIT)romCount++;
 					   foundRoms[romCount]=files->d_name;
-					   romCount++;
-					   //counter++;
+					   
+					   
 				   }
 			   }
+			   
+	   printf("ROM Count: %d\n",romCount);
+	   
+	   romPageCount=(int)(romCount/ROM_PER_PAGE_COUNT);
+	   remainder = romCount - (romPageCount*ROM_PER_PAGE_COUNT);
+	   if (remainder) romPageCount++;
+	   
+	   printf("ROM Page Count: %d\n",romPageCount);
 	   
 	   closedir(dirX);
 	   
@@ -243,7 +257,7 @@ void setRom(){
 	snprintf(romname, sizeof(romname), "%s/%s", ROM_DIR,foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + gui_RomBrowser.itemCur - 1]);
 	
 	
-	
+	loadslot = -1
 	runRomBrowser=0;
 	//emulation=1;
 	//allowExit=1;
@@ -372,7 +386,7 @@ void ShowPreview(MENU *menu)
 	SDL_Rect dst, dst2;
 	SDL_Surface *tmp;
 
-	if(menu == &gui_MainMenu && (menu->itemCur == 1 || menu->itemCur == 2)) 
+	if(menu == &gui_MainMenu && (menu->itemCur == 2 || menu->itemCur == 3)) 
 	{
 		if(loadslot != gui_LoadSlot) 
 		{
@@ -395,6 +409,7 @@ void ShowPreview(MENU *menu)
 			}
 			loadslot = gui_LoadSlot; // do not load img file each time
 		}
+		
 		
 		if (Game_Surface_Preview) 
 		{
@@ -447,6 +462,7 @@ void ShowPreview(MENU *menu)
 			SDL_SoftStretch(HandyBuffer, &dst2, menuSurface, &dst);
 		}
 	}
+	
 }
 
 /*
@@ -456,6 +472,17 @@ void ShowMenu(MENU *menu)
 {
 	int i;
 	MENUITEM *mi = menu->m;
+	char buf[64];
+	
+	
+	*(unsigned long *)buf = 0;
+	*(unsigned long *)&buf[4] = 0;
+	*(unsigned long *)&buf[8] = 0;
+	*(unsigned long *)&buf[12] = 0;
+	*(unsigned long *)&buf[16] = 0;
+	sprintf(buf, "Page %d of %d", curRomPage, romPageCount);
+          
+	
 
 	// clear buffer
 	assert(menuSurface);
@@ -473,7 +500,7 @@ void ShowMenu(MENU *menu)
 	}
 
 	// show preview screen
-	ShowPreview(menu);
+	if (!runRomBrowser) ShowPreview(menu);
 
 	// print info string
 	//#ifdef RS90
@@ -488,6 +515,11 @@ void ShowMenu(MENU *menu)
 	}else{
 		print_string("[Start] = Choose rom", COLOR_HELP_TEXT, COLOR_BG, 4, 11);
 	}
+	
+	
+	print_string(buf, COLOR_HELP_TEXT, COLOR_BG, 4, 19);
+	
+
 	//#else
 	//print_string("Press B to return to the game", COLOR_HELP_TEXT, COLOR_BG, 56, 220);
 	//print_string("Handy libretro " __DATE__ " build", COLOR_HELP_TEXT, COLOR_BG, 40, 2);
@@ -502,6 +534,8 @@ void gui_MainMenuRun(MENU *menu)
 {
 	SDL_Event gui_event;
 	MENUITEM *mi;
+	
+          
 
 	done = FALSE;
 
@@ -530,10 +564,12 @@ void gui_MainMenuRun(MENU *menu)
 				// DINGOO LEFT - decrease parameter value
 				if(gui_event.key.keysym.sym == SDLK_LEFT ) {
 					if(mi->itemPar != NULL && *mi->itemPar > 0) *mi->itemPar -= 1;
+					if(runRomBrowser && curRomPage>0)curRomPage--;
 				}
 				// DINGOO RIGHT - increase parameter value
 				if(gui_event.key.keysym.sym == SDLK_RIGHT) {
 					if(mi->itemPar != NULL && *mi->itemPar < mi->itemParMaxValue) *mi->itemPar += 1;
+					if(runRomBrowser && curRomPage<romPageCount)curRomPage++;
 				}
 			}
 		}
