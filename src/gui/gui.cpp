@@ -538,16 +538,16 @@ void ShowMenu(MENU *menu)
 	print_string("Handy: Lynx Emulator", color16(0, 255, 255), COLOR_BG, 5, 2, 2);
 	if(!runRomBrowser){
 	//print_string("Port by gameblabla", COLOR_HELP_TEXT, COLOR_BG, 48, 88);
-	print_string("[1] = Return to game", COLOR_HELP_TEXT, COLOR_BG, 4, 13,1);
-	print_string("[START] = Choose Item", COLOR_HELP_TEXT, COLOR_BG, 4, 20,1);
+	print_string("[1] = Return to game", COLOR_HELP_TEXT, COLOR_BG, 4, 13, 1);
+	print_string("[START] = Choose Item", COLOR_HELP_TEXT, COLOR_BG, 4, 20, 1);
 	
 	}else{
-		print_string("[START] = Choose ROM", COLOR_HELP_TEXT, COLOR_BG, 4, 14,1);
+		print_string("[START] = Choose ROM", COLOR_HELP_TEXT, COLOR_BG, 4, 14, 1);
 		
 		
-		print_string("[LEFT/RIGHT] = Change page", COLOR_HELP_TEXT, COLOR_BG, 4, 24,1);
+		print_string("[LEFT/RIGHT] = Change page", COLOR_HELP_TEXT, COLOR_BG, 4, 24, 1);
 		
-		print_string(buf, color16(0, 40, 255), COLOR_BG, 4, 34,1);
+		print_string(buf, color16(0, 40, 255), COLOR_BG, 4, 34, 1);
 		
 	}
 	
