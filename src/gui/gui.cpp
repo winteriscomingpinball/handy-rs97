@@ -320,7 +320,7 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 		
 			for(h = 9*size; h; h--) {
 				dst = (Uint16 *)s->pixels + (y+(8*size)-h)*s->w + x;
-				charPixelh=h/size;
+				charPixelh=h/size+1;
 				for(w = 8*size; w; w--) {
 					charPixelw=w/size+1;
 					Uint16 color = bg_color; // background
