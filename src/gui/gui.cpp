@@ -335,7 +335,7 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 	}
 		
 	
-	if(SDL_MUSTLOCK(s)) SDL_UnlockSurface(s);
+	if(SadriDL_MUSTLOCK(s)) SDL_UnlockSurface(s);
 }
 
 void ShowString(int x, int y, const char *s, int size)
@@ -531,11 +531,11 @@ void ShowMenu(MENU *menu)
 	//#ifdef RS90
 	if(runRomBrowser){
 		if (i>0)ymod=16;
-		ShowMenuItem(10, 53 + ymod + (i * 9*2), mi, fg_color);
+		ShowMenuItem(0, 53 + ymod + (i * 9*2), mi, fg_color);
 		
 	}
 	else{
-		ShowMenuItem(36, 53 + (i * 9*2), mi, fg_color);
+		ShowMenuItem(0, 53 + (i * 9*2), mi, fg_color);
 		
 		
 		
