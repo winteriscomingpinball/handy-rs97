@@ -523,6 +523,7 @@ void ShowMenu(MENU *menu)
 		ShowMenuItem(36, 112 + (i * 9), mi, fg_color);
 		
 		
+		
 	}
 	}
 	
