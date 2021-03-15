@@ -300,8 +300,8 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 	
 	int charPixelw=8;
     int	charPixelh=8;
-    char hcounter=0;
-	char wcounter=0;
+    char hcounter=1;
+	char wcounter=1;
 	if(SDL_MUSTLOCK(s)) SDL_LockSurface(s);
 	
 	if(size==1){
