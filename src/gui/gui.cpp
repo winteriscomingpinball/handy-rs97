@@ -192,7 +192,7 @@ void findRoms(){
 	 
 	  struct dirent *files;
    
-   
+   romCount=0;
    //if(!romsChecked){
 	   DIR *dirX = opendir(ROM_DIR);
 	   if (dirX == NULL){
