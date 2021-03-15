@@ -407,7 +407,15 @@ void gui_SaveState()
 */
 void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y, int size)
 {
+	int sizemod=0;
 	int i, j = strlen(s);
+	if (size>1){
+		sizemod=6*size)
+	}else{
+	    sizemod=7;
+	}
+	 
+
 	for(i = 0; i < j; i++, x += 6*size) ShowChar(menuSurface, x, y, s[i], fg_color, bg_color, size);
 }
 
