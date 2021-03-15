@@ -303,7 +303,7 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 
 	if(SDL_MUSTLOCK(s)) SDL_LockSurface(s);
 	
-	if(size>1){
+	if(size==1){
 		for(h = 8; h; h--) {
 			dst = (Uint16 *)s->pixels + (y+8-h)*s->w + x;
 			for(w = 8; w; w--) {
