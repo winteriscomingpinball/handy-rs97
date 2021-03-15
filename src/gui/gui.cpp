@@ -354,7 +354,7 @@ void ShowMenuItem(int x, int y, MENUITEM *m, int fg_color)
 	static char i_str[24];
 
 	// if no parameters, show simple menu item
-	if(m->itemPar == NULL) print_string(m->itemName, fg_color, COLOR_BG, x, y, 1);
+	if(m->itemPar == NULL) print_string(m->itemName, fg_color, COLOR_BG, x, y, 2);
 	else {
 		if(m->itemParName == NULL) {
 			// if parameter is a digit
@@ -363,7 +363,7 @@ void ShowMenuItem(int x, int y, MENUITEM *m, int fg_color)
 			// if parameter is a name in array
 			snprintf(i_str, sizeof(i_str),  "%s%s", m->itemName, *(m->itemParName + *m->itemPar));
 		}
-		print_string(i_str, fg_color, COLOR_BG, x, y,1);
+		print_string(i_str, fg_color, COLOR_BG, x, y,2);
 	}
 }
 
@@ -530,11 +530,11 @@ void ShowMenu(MENU *menu)
 	//#ifdef RS90
 	if(runRomBrowser){
 		if (i>0)ymod=16;
-		ShowMenuItem(10, 50 + ymod + (i * 9), mi, fg_color);
+		ShowMenuItem(10, 53 + ymod + (i * 9*2), mi, fg_color);
 		
 	}
 	else{
-		ShowMenuItem(36, 112 + (i * 9), mi, fg_color);
+		ShowMenuItem(36, 112 + (i * 9*2), mi, fg_color);
 		
 		
 		
@@ -562,7 +562,7 @@ void ShowMenu(MENU *menu)
 		
 		print_string("[LEFT/RIGHT] = Change page", COLOR_HELP_TEXT, COLOR_BG, 4, 25, 1);
 		
-		print_string(buf, color16(0, 40, 255), COLOR_BG, 4, 37, 1);
+		print_string(buf, color16(0, 40, 255), COLOR_BG, 4, 37, 2);
 		
 	}
 	
