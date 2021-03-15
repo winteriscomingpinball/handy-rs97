@@ -300,8 +300,7 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 	
 	int charPixelw=8;
     int	charPixelh=8;
-    char hcounter=1;
-	char wcounter=1;
+
 	if(SDL_MUSTLOCK(s)) SDL_LockSurface(s);
 	
 	if(size==1){
@@ -321,20 +320,9 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 		
 			for(h = 8*size; h; h--) {
 				dst = (Uint16 *)s->pixels + (y+(8*size)-h)*s->w + x;
-				
-				if(hcounter==8*size){
-				  charPixelh--;
-				  hcounter=1;
-				}
-				hcounter++;
-				
+				charPixelh=h/size+1;
 				for(w = 8*size; w; w--) {
-					if (wcounter==8*size){
-						charPixelw--;
-						wcounter=1;
-					}
-					wcounter++;
-					
+					charPixelw=w/size+1;
 					Uint16 color = bg_color; // background
 				    if((gui_font[a*8 + (8-charPixelh)] >> charPixelw) & 1) color = fg_color; // test bits 876543210
 				 					
