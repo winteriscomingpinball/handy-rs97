@@ -293,10 +293,12 @@ void gui_ClearScreen()
 /*
 	Prints char on a given surface
 */
-void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int bg_color)
+void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int bg_color, int size)
 {
 	Uint16 *dst;
 	int w, h;
+	
+	int destw,desth;
 
 	if(SDL_MUSTLOCK(s)) SDL_LockSurface(s);
 	for(h = 8; h; h--) {
@@ -304,22 +306,33 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 		for(w = 8; w; w--) {
 			Uint16 color = bg_color; // background
 			if((gui_font[a*8 + (8-h)] >> w) & 1) color = fg_color; // test bits 876543210
-			*dst++ = color;
+			
+			if(size>1){
+				for(desth=size; desth, desth--){ 
+					dst = (Uint16 *)s->pixels + ((y+8*size)-h*desth)*s->w + x;
+					for(destw=size;destw; destw--){
+						*dst++ = color;
+					}
+				}
+			}else{
+				*dst++ = color;
+			}
+			
 		}
 	}
 	if(SDL_MUSTLOCK(s)) SDL_UnlockSurface(s);
 }
 
-void ShowString(int x, int y, const char *s)
+void ShowString(int x, int y, const char *s, int size)
 {
 	int i, j = strlen(s);
-	for(i = 0; i < j; i++, x += 8) ShowChar(menuSurface, x, y, s[i], 0xFFFF, 0);
+	for(i = 0; i < j; i++, x += 8) ShowChar(menuSurface, x, y, s[i], 0xFFFF, 0,size);
 }
 
 void ShowStringEx(int x, int y, const char *s)
 {
 	int i, j = strlen(s);
-	for(i = 0; i < j; i++, x += 8) ShowChar(mainSurface, x, y, s[i], 0xFFFF, 0);
+	for(i = 0; i < j; i++, x += 8) ShowChar(mainSurface, x, y, s[i], 0xFFFF, 0,size);
 }
 
 void ShowMenuItem(int x, int y, MENUITEM *m, int fg_color)
@@ -376,10 +389,10 @@ void gui_SaveState()
 	copy-pasted mostly from gpsp emulator by Exophaze
 	thanks for it
 */
-void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y)
+void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y, int size)
 {
 	int i, j = strlen(s);
-	for(i = 0; i < j; i++, x += 8) ShowChar(menuSurface, x, y, s[i], fg_color, bg_color);
+	for(i = 0; i < j; i++, x += 8) ShowChar(menuSurface, x, y, s[i], fg_color, bg_color,size);
 }
 
 /*
@@ -522,19 +535,19 @@ void ShowMenu(MENU *menu)
 	
 	
 	
-	print_string("Handy: Lynx Emulator", color16(0, 255, 255), COLOR_BG, 5, 2);
+	print_string("Handy: Lynx Emulator", color16(0, 255, 255), COLOR_BG, 5, 2, 2);
 	if(!runRomBrowser){
 	//print_string("Port by gameblabla", COLOR_HELP_TEXT, COLOR_BG, 48, 88);
-	print_string("[1] = Return to game", COLOR_HELP_TEXT, COLOR_BG, 4, 13);
-	print_string("[START] = Choose Item", COLOR_HELP_TEXT, COLOR_BG, 4, 20);
+	print_string("[1] = Return to game", COLOR_HELP_TEXT, COLOR_BG, 4, 13,1);
+	print_string("[START] = Choose Item", COLOR_HELP_TEXT, COLOR_BG, 4, 20,1);
 	
 	}else{
-		print_string("[START] = Choose ROM", COLOR_HELP_TEXT, COLOR_BG, 4, 14);
+		print_string("[START] = Choose ROM", COLOR_HELP_TEXT, COLOR_BG, 4, 14,1);
 		
 		
-		print_string("[LEFT/RIGHT] = Change page", COLOR_HELP_TEXT, COLOR_BG, 4, 24);
+		print_string("[LEFT/RIGHT] = Change page", COLOR_HELP_TEXT, COLOR_BG, 4, 24,1);
 		
-		print_string(buf, color16(0, 40, 255), COLOR_BG, 4, 34);
+		print_string(buf, color16(0, 40, 255), COLOR_BG, 4, 34,1);
 		
 	}
 	
