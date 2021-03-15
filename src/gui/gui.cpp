@@ -487,7 +487,7 @@ void ShowMenu(MENU *menu)
 	*(unsigned long *)&buf[8] = 0;
 	*(unsigned long *)&buf[12] = 0;
 	*(unsigned long *)&buf[16] = 0;
-	sprintf(buf, "Page %d of %d", curRomPage+1, romPageCount);
+	sprintf(buf, "Page %d of %d", curRomPage+1, romPageCount+1);
           
 	
 
