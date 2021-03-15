@@ -531,7 +531,7 @@ void ShowMenu(MENU *menu)
 	//#ifdef RS90
 	if(runRomBrowser){
 		if (i>0)ymod=16;
-		ShowMenuItem(0, 53 + ymod + (i * 9*2), mi, fg_color);
+		ShowMenuItem(0, 56 + ymod + (i * 9*2), mi, fg_color);
 		
 	}
 	else{
