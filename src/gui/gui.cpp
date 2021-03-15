@@ -185,6 +185,24 @@ int cmpfunc (const void * a, const void * b ) {
 
 
 
+void setupRomPage(int pageNum){
+	char i;
+	
+	puts("Applying ROM names to list");
+   for (i=0;i<ROM_PER_PAGE_COUNT;i++){
+    if(foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i]){
+		gui_RomBrowserItems[i+1].itemName = foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i];
+		
+	}else{
+		break;
+	}
+   }
+   
+   puts("Finished that...");
+   gui_RomBrowser.itemNum=i+1;
+}
+
+
 void findRoms(){
 	char dir[20]="";
 	 char savdir[20]="";
@@ -222,7 +240,7 @@ void findRoms(){
 	   
 	   romPageCount=(int)(romCount/ROM_PER_PAGE_COUNT);
 	   remainder = romCount - (romPageCount*ROM_PER_PAGE_COUNT);
-	   if (remainder) romPageCount++;
+	   if (!remainder) romPageCount--;
 	   
 	   printf("ROM Page Count: %d\n",romPageCount);
 	   
@@ -233,18 +251,7 @@ void findRoms(){
 	   //qsort(foundRoms,romCount,sizeof(char),cmpfunc);
    //}
    
-   puts("Applying ROM names to list");
-   for (i=0;i<ROM_PER_PAGE_COUNT;i++){
-    if(foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i]){
-		gui_RomBrowserItems[i+1].itemName = foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + i];
-		
-	}else{
-		break;
-	}
-   }
-   
-   puts("Finished that...");
-   gui_RomBrowser.itemNum=i+1;
+   setupRomPage(0);
    
    romsChecked=1;
 }
@@ -480,7 +487,7 @@ void ShowMenu(MENU *menu)
 	*(unsigned long *)&buf[8] = 0;
 	*(unsigned long *)&buf[12] = 0;
 	*(unsigned long *)&buf[16] = 0;
-	sprintf(buf, "Page %d of %d", curRomPage, romPageCount);
+	sprintf(buf, "Page %d of %d", curRomPage+1, romPageCount);
           
 	
 
@@ -564,12 +571,20 @@ void gui_MainMenuRun(MENU *menu)
 				// DINGOO LEFT - decrease parameter value
 				if(gui_event.key.keysym.sym == SDLK_LEFT ) {
 					if(mi->itemPar != NULL && *mi->itemPar > 0) *mi->itemPar -= 1;
-					if(runRomBrowser && curRomPage>0)curRomPage--;
+					if(runRomBrowser && curRomPage>0){
+						curRomPage--;
+						setupRomPage(curRomPage);
+						menu->itemCur=1;
+					}
 				}
 				// DINGOO RIGHT - increase parameter value
 				if(gui_event.key.keysym.sym == SDLK_RIGHT) {
 					if(mi->itemPar != NULL && *mi->itemPar < mi->itemParMaxValue) *mi->itemPar += 1;
-					if(runRomBrowser && curRomPage<romPageCount)curRomPage++;
+					if(runRomBrowser && curRomPage<romPageCount){
+						curRomPage++;
+						setupRomPage(curRomPage);
+						menu->itemCur=1;
+					}
 				}
 			}
 		}
