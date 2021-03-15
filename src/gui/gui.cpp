@@ -91,7 +91,7 @@ void gui_ConfigMenuRun();
 void gui_Reset();
 void gui_Init();
 void gui_Flip();
-void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y);
+void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y, int size);
 void get_config_path();
 
 void gui_RunRomBrowser();
