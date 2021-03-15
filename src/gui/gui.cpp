@@ -346,7 +346,7 @@ void ShowString(int x, int y, const char *s, int size)
 void ShowStringEx(int x, int y, const char *s, int size)
 {
 	int i, j = strlen(s);
-	for(i = 0; i < j; i++, x += 8) ShowChar(mainSurface, x, y, s[i], 0xFFFF, 0,size);
+	for(i = 0; i < j; i++, x += 8*size) ShowChar(mainSurface, x, y, s[i], 0xFFFF, 0,size);
 }
 
 void ShowMenuItem(int x, int y, MENUITEM *m, int fg_color)
@@ -406,7 +406,7 @@ void gui_SaveState()
 void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y, int size)
 {
 	int i, j = strlen(s);
-	for(i = 0; i < j; i++, x += 8) ShowChar(menuSurface, x, y, s[i], fg_color, bg_color, size);
+	for(i = 0; i < j; i++, x += 8*size) ShowChar(menuSurface, x, y, s[i], fg_color, bg_color, size);
 }
 
 /*
