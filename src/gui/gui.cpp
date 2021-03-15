@@ -77,7 +77,7 @@ int Invert = 0;
 
 int allowExit=1;
 
-char foundRoms=malloc(sizeof(char)*ROM_COUNT_LIMIT);
+char *foundRoms=malloc(sizeof(char)*ROM_COUNT_LIMIT);
 short romCount=0;
 short curRomNum=0;
 short curRomPage=0;
