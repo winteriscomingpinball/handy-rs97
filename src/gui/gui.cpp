@@ -77,7 +77,7 @@ int Invert = 0;
 
 int allowExit=1;
 
-char *foundRoms=malloc(sizeof(char)*ROM_COUNT_LIMIT);
+char foundRoms=malloc(sizeof(char)*ROM_COUNT_LIMIT);
 short romCount=0;
 short curRomNum=0;
 short curRomPage=0;
@@ -206,7 +206,7 @@ void findRoms(){
 				   if(files->d_name[0] != '.' &&   (strstr(files->d_name, ".lnx") != NULL || strstr(files->d_name, ".zip") != NULL )){
 					   printf("%s\n", files->d_name);
 					   //directories[counter]=(wchar_t)files->d_name;
-					   foundRoms[romCount]=(char *)files->d_name;
+					   foundRoms[romCount]=(char)files->d_name;
 					   romCount++;
 					   //counter++;
 				   }
