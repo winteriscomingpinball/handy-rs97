@@ -72,12 +72,32 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+#include <sys/ioctl.h>
+#include <stdio.h>
+
+#include <linux/fb.h>
+#include <drv_display.h>
+
+
+//ggmicro specifics
+#define DEFAULTFBDEV  "/dev/fb0"
+#define DEFAULTFBMODE "/etc/fb.modes"
+#define displayno 0
+#define DISP_DEV "/dev/disp"
+
+const char *fbdev = DEFAULTFBDEV;
+disp_layer_info prev_layerinfo;
+disp_layer_info layerinfo;
+struct fb_var_screeninfo var;
+
+
 /* SDL declarations */
 SDL_Surface        *HandyBuffer, *mainSurface;
 extern SDL_Surface* menuSurface;
 #ifndef NOJOYSTICK
 SDL_Joystick *joystick;
 #endif
+
 
 bool runRomBrowser=0;
 
@@ -181,6 +201,78 @@ void Set_Rotation_Game()
     /* 8 pixels will be cropped and 8 more pixels are needed to avoid overflows. */
 	HandyBuffer = SDL_CreateRGBSurface(SDL_SWSURFACE, LynxWidth, 176, 16, 0, 0, 0, 0);
 }
+
+
+void setupFrameBuffer(){
+	int fh;
+	fh = open(fbdev, O_RDONLY);
+	if ( fh < 0 )
+  {
+    puts("open fb0 failed");
+  }
+  else
+  {
+	//use this to get framebuffer info
+    ioctl(fh, 0x4600u, &var);
+	var.yres=180;
+	var.xres=240;
+	var.yres_virtual=180;
+	var.xres_virtual=240;
+	var.bits_per_pixel=32;
+	
+	//use this to set framebuffer
+	ioctl(fh, 0x4601, &var);//FBIOPUT_VSCREENINFO
+	
+	
+	//now set up layers
+	int args[4] = {displayno, 3, (unsigned long)(&layerinfo), 0};
+	int dispfile;
+	
+	dispfile = open(DISP_DEV, O_RDWR, 0);
+	if (dispfile < 0) {
+		perror("open");
+		//return -1;
+	}
+	
+	if (ioctl(dispfile, DISP_CMD_LAYER_GET_INFO, &args) < 0)
+		perror("ioctl: 0x43 - DISP_CMD_LAYER_GET_INFO");
+	
+	layerinfo.fb.size.width=144;
+	layerinfo.fb.size.height=160;
+	
+	layerinfo.fb.src_win.height=240;
+	layerinfo.fb.src_win.height=180;
+	
+	layerinfo.screen_win.width=240;
+	layerinfo.screen_win.height=180;
+	layerinfo.screen_win.y=38;
+	layerinfo.mode=DISP_LAYER_WORK_MODE_NORMAL;
+	layerinfo.alpha_mode=0;
+	layerinfo.fb.format = DISP_FORMAT_RGB_565;
+	if (ioctl(dispfile, DISP_CMD_LAYER_SET_INFO, &args) < 0)//DISP_CMD_LAYER_SET_INFO
+		perror("ioctl: 0x42 - DISP_CMD_LAYER_SET_INFO");
+    if (ioctl(dispfile, DISP_CMD_LAYER_ENABLE, &args) < 0)//DISP_CMD_LAYER_ENABLE 
+		perror("ioctl: 0x41 - DISP_CMD_LAYER_ENABLE");	
+	
+	args[1]=0;
+	if (ioctl(dispfile, DISP_CMD_LAYER_DISABLE, &args) < 0)//DISP_CMD_LAYER_DISABLE 
+			perror("ioctl: 0x41 - DISP_CMD_LAYER_DISABLE");	
+			puts("disabled layer 0");
+	args[1]=1;		
+	if (ioctl(dispfile, DISP_CMD_LAYER_DISABLE, &args) < 0)//DISP_CMD_LAYER_DISABLE 
+			perror("ioctl: 0x41 - DISP_CMD_LAYER_DISABLE");	
+			puts("disabled layer 1");
+	args[1]=2;
+	if (ioctl(dispfile, DISP_CMD_LAYER_DISABLE, &args) < 0)//DISP_CMD_LAYER_DISABLE 
+			perror("ioctl: 0x41 - DISP_CMD_LAYER_DISABLE");	
+			puts("disabled layer 2");
+	
+	
+	
+  }
+}
+
+
 
 /*
     Name                :     handy_sdl_rom_info
@@ -332,6 +424,9 @@ int main(int argc, char *argv[])
     char load_filename[512];
     
     
+	setupFrameBuffer();
+	
+	
     // get bios path
     getcwd(load_filename, 512);
 
