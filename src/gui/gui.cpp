@@ -77,7 +77,7 @@ int Invert = 0;
 
 int allowExit=1;
 
-int *foundRoms=malloc(sizeof(int)*ROM_COUNT_LIMIT);
+int *foundRoms[ROM_COUNT_LIMIT];
 short romCount=0;
 short curRomNum=0;
 short curRomPage=0;
@@ -193,7 +193,7 @@ void findRoms(){
 	  struct dirent *files;
    
    
-   if(!romsChecked){
+   //if(!romsChecked){
 	   DIR *dirX = opendir(ROM_DIR);
 	   if (dirX == NULL){
 		  printf("ROM Directory cannot be opened!" );
@@ -217,7 +217,7 @@ void findRoms(){
 	   puts("Sorting found ROMs by name");
 	   
 	   qsort(foundRoms,romCount,sizeof(int),cmpfunc);
-   }
+   //}
    
    puts("Applying ROM names to list");
    for (i=0;i<ROM_PER_PAGE_COUNT;i++){
