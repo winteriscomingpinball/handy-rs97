@@ -79,7 +79,7 @@
 #include <stdio.h>
 
 #include <linux/fb.h>
-#include <drv_display.h>
+#include "drv_display.h"
 
 
 //ggmicro specifics
