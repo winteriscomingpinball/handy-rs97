@@ -298,32 +298,38 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 	Uint16 *dst;
 	int w, h;
 	
-	int destw,desth;
+	int charPixelw=8;
+    int	charPixelh=8;
 
 	if(SDL_MUSTLOCK(s)) SDL_LockSurface(s);
 	
 	if(size>1){
-	for(h = 8; h; h--) {
-		dst = (Uint16 *)s->pixels + (y+8-h)*s->w + x;
-		for(w = 8; w; w--) {
-			Uint16 color = bg_color; // background
-			if((gui_font[a*8 + (8-h)] >> w) & 1) color = fg_color; // test bits 876543210
-			
-			
-				*dst++ = color;
-			
+		for(h = 8; h; h--) {
+			dst = (Uint16 *)s->pixels + (y+8-h)*s->w + x;
+			for(w = 8; w; w--) {
+				Uint16 color = bg_color; // background
+				if((gui_font[a*8 + (8-h)] >> w) & 1) color = fg_color; // test bits 876543210
+				
+				
+					*dst++ = color;
+				
+			}
 		}
-	}
 	}else{
-		for(h = 8*size; h; h--) {
-		dst = (Uint16 *)s->pixels + (y+8*size-h)*s->w + x;
-		for(w = 8*size; w; w--) {
-			Uint16 color = bg_color; // background
-			if((gui_font[a*8 + (8-h)] >> w) & 1) color = fg_color; // test bits 876543210
-			
-			
-				*dst++ = color;
-			
+		
+		for (charPixel){
+			for(h = 8*size; h; h--) {
+				dst = (Uint16 *)s->pixels + (y+(8*size)-h)*s->w + x;
+				charPixelh=h/size;
+				for(w = 8*size; w; w--) {
+					charPixelw=w/size;
+					Uint16 color = bg_color; // background
+				    if((gui_font[a*8 + (8-charPixelh)] >> charPixelw) & 1) color = fg_color; // test bits 876543210
+				 					
+						*dst++ = color;
+					
+				}
+			}
 		}
 	}
 		
@@ -334,7 +340,7 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 void ShowString(int x, int y, const char *s, int size)
 {
 	int i, j = strlen(s);
-	for(i = 0; i < j; i++, x += 8) ShowChar(menuSurface, x, y, s[i], 0xFFFF, 0,size);
+	for(i = 0; i < j; i++, x += 8*size) ShowChar(menuSurface, x, y, s[i], 0xFFFF, 0,size);
 }
 
 void ShowStringEx(int x, int y, const char *s, int size)
