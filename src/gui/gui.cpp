@@ -214,9 +214,9 @@ void findRoms(){
 	   
 	   closedir(dirX);
 	   
-	   puts("Sorting found ROMs by name");
+	   //puts("Sorting found ROMs by name");
 	   
-	   qsort(foundRoms,romCount,sizeof(char),cmpfunc);
+	   //qsort(foundRoms,romCount,sizeof(char),cmpfunc);
    //}
    
    puts("Applying ROM names to list");
