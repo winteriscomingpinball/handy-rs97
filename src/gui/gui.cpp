@@ -529,7 +529,7 @@ void ShowMenu(MENU *menu)
 	print_string("[START] = Choose Item", COLOR_HELP_TEXT, COLOR_BG, 4, 20);
 	
 	}else{
-		print_string("[START] = Choose ROM", COLOR_HELP_TEXT, COLOR_BG, 4, 15);
+		print_string("[START] = Choose ROM", COLOR_HELP_TEXT, COLOR_BG, 4, 14);
 		
 		
 		print_string("[LEFT/RIGHT] = Change page", COLOR_HELP_TEXT, COLOR_BG, 4, 24);
