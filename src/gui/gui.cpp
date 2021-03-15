@@ -410,7 +410,7 @@ void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y, int s
 	int sizemod=0;
 	int i, j = strlen(s);
 	if (size>1){
-		sizemod=6*size)
+		sizemod=6*size);
 	}else{
 	    sizemod=7;
 	}
