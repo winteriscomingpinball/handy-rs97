@@ -500,14 +500,17 @@ void ShowMenu(MENU *menu)
 		int fg_color;
 		if(menu->itemCur == i) fg_color = COLOR_ACTIVE_ITEM; else fg_color = COLOR_INACTIVE_ITEM;
 	//#ifdef RS90
-		ShowMenuItem(10, (12 + i) * 8, mi, fg_color);
-	//#else
-	//	ShowMenuItem(1, (18 + i) * 8, mi, fg_color);
-	//#endif
+	if(runRomBrowser){
+		ShowMenuItem(10, (14 + i) * 8, mi, fg_color);
+		
+	}
+	else{
+		ShowMenuItem(36, (18 + i) * 8, mi, fg_color);
+		// show preview screen
+		ShowPreview(menu);
+	}
 	}
 
-	// show preview screen
-	if (!runRomBrowser) ShowPreview(menu);
 
 	// print info string
 	//#ifdef RS90
