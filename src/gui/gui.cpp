@@ -301,24 +301,32 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 	int destw,desth;
 
 	if(SDL_MUSTLOCK(s)) SDL_LockSurface(s);
+	
+	if(size>1){
 	for(h = 8; h; h--) {
 		dst = (Uint16 *)s->pixels + (y+8-h)*s->w + x;
 		for(w = 8; w; w--) {
 			Uint16 color = bg_color; // background
 			if((gui_font[a*8 + (8-h)] >> w) & 1) color = fg_color; // test bits 876543210
 			
-			if(size>1){
-				for(desth=size; desth; desth--){ 
-					dst = (Uint16 *)s->pixels + ((y+8*size)-h*desth)*s->w + x;
-					for(destw=size;destw; destw--){
-						*dst++ = color;
-					}
-				}
-			}else{
+			
 				*dst++ = color;
-			}
 			
 		}
+	}
+	}else{
+		for(h = 8*size; h; h--) {
+		dst = (Uint16 *)s->pixels + (y+8*size-h)*s->w + x;
+		for(w = 8*size; w; w--) {
+			Uint16 color = bg_color; // background
+			if((gui_font[a*8 + (8-h)] >> w) & 1) color = fg_color; // test bits 876543210
+			
+			
+				*dst++ = color;
+			
+		}
+	}
+		
 	}
 	if(SDL_MUSTLOCK(s)) SDL_UnlockSurface(s);
 }
