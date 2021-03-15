@@ -320,7 +320,7 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 		
 			for(h = 8*size; h; h--) {
 				dst = (Uint16 *)s->pixels + (y+(8*size)-h)*s->w + x;
-				charPixelh=h/size+1;
+				charPixelh=h/size+2;
 				for(w = 8*size; w; w--) {
 					charPixelw=w/size;
 					Uint16 color = bg_color; // background
@@ -448,8 +448,8 @@ void ShowPreview(MENU *menu)
 		if (Game_Surface_Preview) 
 		{
 			//#ifdef RS90
-			dst.x = 72;
-			dst.y = 32;
+			dst.x = 240-96;
+			dst.y = 0;
 			dst.w = 96;
 			dst.h = 64;
 			dst2.x = 0;
@@ -475,8 +475,8 @@ void ShowPreview(MENU *menu)
 		if (HandyBuffer) 
 		{
 			//#ifdef RS90
-			dst.x = 72;
-			dst.y = 32;
+			dst.x = 240-96;
+			dst.y = 0;
 			dst.w = 96;
 			dst.h = 64;
 			dst2.x = 0;
