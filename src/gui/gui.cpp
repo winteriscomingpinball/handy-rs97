@@ -303,6 +303,7 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 
 	if(SDL_MUSTLOCK(s)) SDL_LockSurface(s);
 	
+	
 	if(size==1){
 		for(h = 8; h; h--) {
 			dst = (Uint16 *)s->pixels + (y+8-h)*s->w + x;
@@ -335,7 +336,7 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 	}
 		
 	
-	if(SadriDL_MUSTLOCK(s)) SDL_UnlockSurface(s);
+	if(SDL_MUSTLOCK(s)) SDL_UnlockSurface(s);
 }
 
 void ShowString(int x, int y, const char *s, int size)
