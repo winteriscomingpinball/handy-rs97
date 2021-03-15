@@ -308,7 +308,7 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 			if((gui_font[a*8 + (8-h)] >> w) & 1) color = fg_color; // test bits 876543210
 			
 			if(size>1){
-				for(desth=size; desth, desth--){ 
+				for(desth=size; desth; desth--){ 
 					dst = (Uint16 *)s->pixels + ((y+8*size)-h*desth)*s->w + x;
 					for(destw=size;destw; destw--){
 						*dst++ = color;
