@@ -329,7 +329,7 @@ void ShowString(int x, int y, const char *s, int size)
 	for(i = 0; i < j; i++, x += 8) ShowChar(menuSurface, x, y, s[i], 0xFFFF, 0,size);
 }
 
-void ShowStringEx(int x, int y, const char *s)
+void ShowStringEx(int x, int y, const char *s, int size)
 {
 	int i, j = strlen(s);
 	for(i = 0; i < j; i++, x += 8) ShowChar(mainSurface, x, y, s[i], 0xFFFF, 0,size);
