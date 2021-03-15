@@ -421,8 +421,8 @@ void ShowPreview(MENU *menu)
 		if (Game_Surface_Preview) 
 		{
 			//#ifdef RS90
-			dst.x = 72-30;
-			dst.y = 16+4;
+			dst.x = 72;
+			dst.y = 32;
 			dst.w = 96;
 			dst.h = 64;
 			dst2.x = 0;
@@ -448,8 +448,8 @@ void ShowPreview(MENU *menu)
 		if (HandyBuffer) 
 		{
 			//#ifdef RS90
-			dst.x = 72-30;
-			dst.y = 16+4;
+			dst.x = 72;
+			dst.y = 32;
 			dst.w = 96;
 			dst.h = 64;
 			dst2.x = 0;
@@ -514,19 +514,19 @@ void ShowMenu(MENU *menu)
 	
 	
 	
-	print_string("Handy : " __DATE__ " build", COLOR_HELP_TEXT, COLOR_BG, 5, 2);
+	print_string("Handy: Lynx Emulator", color16(0, 255, 255), COLOR_BG, 5, 2);
 	if(!runRomBrowser){
 	//print_string("Port by gameblabla", COLOR_HELP_TEXT, COLOR_BG, 48, 88);
 	print_string("[1] = Return to game", COLOR_HELP_TEXT, COLOR_BG, 4, 11);
 	print_string("[START] = Choose Item", COLOR_HELP_TEXT, COLOR_BG, 4, 19);
 	
 	}else{
-		print_string("[START] = Choose ROM", COLOR_HELP_TEXT, COLOR_BG, 4, 11);
+		print_string("[START] = Choose ROM", COLOR_HELP_TEXT, COLOR_BG, 4, 15);
 		
 		
-		print_string("[LEFT/RIGHT] = Change page", COLOR_HELP_TEXT, COLOR_BG, 4, 19);
+		print_string("[LEFT/RIGHT] = Change page", COLOR_HELP_TEXT, COLOR_BG, 4, 23);
 		
-		print_string(buf, color16(0, 40, 255), COLOR_BG, 4, 30);
+		print_string(buf, color16(0, 40, 255), COLOR_BG, 4, 33);
 		
 	}
 	
