@@ -77,7 +77,7 @@ int Invert = 0;
 
 int allowExit=1;
 
-int *foundRoms[ROM_COUNT_LIMIT];
+int *foundRoms=malloc(sizeof(int)*ROM_COUNT_LIMIT);
 short romCount=0;
 short curRomNum=0;
 short curRomPage=0;
@@ -217,7 +217,7 @@ void findRoms(){
 	   puts("Sorting found ROMs by name");
 	   
 	   qsort(foundRoms,romCount,sizeof(int),cmpfunc);
-   //}
+   }
    
    puts("Applying ROM names to list");
    for (i=0;i<ROM_PER_PAGE_COUNT;i++){
