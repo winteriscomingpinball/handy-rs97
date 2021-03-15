@@ -257,7 +257,7 @@ void setRom(){
 	snprintf(romname, sizeof(romname), "%s/%s", ROM_DIR,foundRoms[(curRomPage * ROM_PER_PAGE_COUNT) + gui_RomBrowser.itemCur - 1]);
 	
 	
-	loadslot = -1
+	loadslot = -1;
 	runRomBrowser=0;
 	//emulation=1;
 	//allowExit=1;
