@@ -488,7 +488,8 @@ void ShowMenu(MENU *menu)
 	*(unsigned long *)&buf[12] = 0;
 	*(unsigned long *)&buf[16] = 0;
 	sprintf(buf, "Page %d of %d", curRomPage+1, romPageCount+1);
-          
+    
+	int ymod=0;
 	
 
 	// clear buffer
@@ -501,15 +502,19 @@ void ShowMenu(MENU *menu)
 		if(menu->itemCur == i) fg_color = COLOR_ACTIVE_ITEM; else fg_color = COLOR_INACTIVE_ITEM;
 	//#ifdef RS90
 	if(runRomBrowser){
-		ShowMenuItem(10, 48 + (i * 8), mi, fg_color);
+		if (i>0)ymod=8;
+		ShowMenuItem(10, 48 + ymod + (i * 8), mi, fg_color);
 		
 	}
 	else{
 		ShowMenuItem(36, 112 + (i * 8), mi, fg_color);
-		// show preview screen
-		ShowPreview(menu);
+		
+		
 	}
 	}
+	
+	// show preview screen
+	if (!runRomBrowser)ShowPreview(menu);
 
 
 	// print info string
