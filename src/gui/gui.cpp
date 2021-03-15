@@ -340,7 +340,7 @@ void ShowMenuItem(int x, int y, MENUITEM *m, int fg_color)
 	static char i_str[24];
 
 	// if no parameters, show simple menu item
-	if(m->itemPar == NULL) print_string(m->itemName, fg_color, COLOR_BG, x, y);
+	if(m->itemPar == NULL) print_string(m->itemName, fg_color, COLOR_BG, x, y, 1);
 	else {
 		if(m->itemParName == NULL) {
 			// if parameter is a digit
@@ -349,7 +349,7 @@ void ShowMenuItem(int x, int y, MENUITEM *m, int fg_color)
 			// if parameter is a name in array
 			snprintf(i_str, sizeof(i_str),  "%s%s", m->itemName, *(m->itemParName + *m->itemPar));
 		}
-		print_string(i_str, fg_color, COLOR_BG, x, y);
+		print_string(i_str, fg_color, COLOR_BG, x, y,1);
 	}
 }
 
