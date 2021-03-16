@@ -370,12 +370,20 @@ void ShowStringEx(int x, int y, const char *s, int size)
 	for(i = 0; i < j; i++, x += 8*size) ShowChar(mainSurface, x, y, s[i], 0xFFFF, 0,size);
 }
 
-void ShowMenuItem(int x, int y, MENUITEM *m, int fg_color)
+void ShowMenuItem(int x, int y, MENUITEM *m, int fg_color, bool scroll)
 {
 	static char i_str[24];
 
 	// if no parameters, show simple menu item
-	if(m->itemPar == NULL) print_string(m->itemName+1, fg_color, COLOR_BG, x, y, 2);
+	if(m->itemPar == NULL){
+		if (!scroll){
+			print_string(m->itemName, fg_color, COLOR_BG, x, y, 2);
+		}else{
+			print_string(m->itemName+1, fg_color, COLOR_BG, x, y, 2);
+			
+		}
+		
+	}
 	else {
 		if(m->itemParName == NULL) {
 			// if parameter is a digit
@@ -563,11 +571,15 @@ void ShowMenu(MENU *menu)
 	//#ifdef RS90
 	if(runRomBrowser){
 		if (i>0)ymod=8;
-		ShowMenuItem(0, 64 + ymod + (i * 9*2), mi, fg_color);
+		bool scrollval=false;
+		if(menu->itemCur == i)scrollval=true;
+			
+		
+		ShowMenuItem(0, 64 + ymod + (i * 9*2), mi, fg_color, scrollval);
 		
 	}
 	else{
-		ShowMenuItem(0, 64 + (i * 9*2), mi, fg_color);
+		ShowMenuItem(0, 64 + (i * 9*2), mi, fg_color, false);
 		
 		
 		
