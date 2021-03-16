@@ -115,7 +115,7 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 							#ifndef NOJOYSTICK
 							dpad_pressed[0] = 1;
 							#endif
-							menuCheck+=1;
+							
 							opt1Check+=1;
 							switch(Invert)
 							{
@@ -155,6 +155,7 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 							#ifndef NOJOYSTICK
 							dpad_pressed[2] = 1;
 							#endif
+							menuCheck+=1;
 							switch(Invert)
 							{
 								case 0:
@@ -269,7 +270,7 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 							#ifndef NOJOYSTICK
 							dpad_pressed[0] = 0;
 							#endif
-							menuCheck=0;
+							
 							opt1Check=0;
 							switch(Invert)
 							{
@@ -309,6 +310,7 @@ uint32_t Joystick_Down(uint32_t mask, SDL_Event event)
 							#ifndef NOJOYSTICK
 							dpad_pressed[2] = 0;
 							#endif
+							menuCheck=0;
 							switch(Invert)
 							{
 								case 0:
