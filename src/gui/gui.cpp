@@ -300,7 +300,6 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 	
 	int charPixelw=8;
     int	charPixelh=8;
-	int edgeCheck=0;
 
 	if(SDL_MUSTLOCK(s)) SDL_LockSurface(s);
 	
@@ -308,17 +307,13 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 	if(size==1){
 		for(h = 8; h; h--) {
 			dst = (Uint16 *)s->pixels + (y+8-h)*s->w + x;
-			edgeCheck=x;
 			for(w = 8; w; w--) {
 				Uint16 color = bg_color; // background
 				if((console_font_6x8[a*8 + (8-h)] >> w) & 1) color = fg_color; // test bits 876543210
 				
-				
-					if(edgeCheck<240){
-						*dst++ = color;
-					}else{
-						return;
-					}
+		
+					*dst++ = color;
+					
 				
 			}
 		}
@@ -328,19 +323,15 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 			for(h = 8*size; h; h--) {
 				dst = (Uint16 *)s->pixels + (y+(8*size)-h)*s->w + x;
 				charPixelh=(h+(size-1))/size;
-				edgeCheck=x;
 				for(w = 8*size; w; w--) {
 					
 					charPixelw=(w+(size-1))/size-1;
 					Uint16 color = bg_color; // background
 				    if((console_font_6x8[a*8 + (8-charPixelh)] >> charPixelw) & 1) color = fg_color; // test bits 876543210
 				 					
-						if(edgeCheck<240){
+						
 							*dst++ = color;
-						}else{
-							return;
-						}
-						edgeCheck++;
+					
 					
 				}
 			}
