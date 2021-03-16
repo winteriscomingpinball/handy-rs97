@@ -250,6 +250,8 @@ void findRoms(){
 				   }
 			   }
 			   
+	   romCount++;
+			   
 	   printf("ROM Count: %d\n",romCount);
 	   
 	   romPageCount=(int)(romCount/ROM_PER_PAGE_COUNT);
