@@ -578,7 +578,7 @@ void ShowMenu(MENU *menu)
 		if(menu->itemCur == i && strlen(gui_RomBrowserItems[menu->itemCur].itemName)>20){
 			scrollval=true;
 		    if (scrollCounter<scrollMax){
-				scrollCounter++
+				scrollCounter++;
 			}else{
 				scrollCounter=0;
 			}
