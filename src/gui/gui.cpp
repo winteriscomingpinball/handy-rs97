@@ -263,7 +263,7 @@ void findRoms(){
 	   puts("Sorting found ROMs by name");
 	   
 	   //qsort(foundRoms,romCount,sizeof(char),cmpfunc);
-	   sortRoms(foundRoms,romCount);
+	   sortRoms(foundRoms,romCount+1);
 	   
 	   
    //}
