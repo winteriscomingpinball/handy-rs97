@@ -56,7 +56,7 @@
 #define ROM_COUNT_LIMIT 30
 #define ROM_PER_PAGE_COUNT 5
 #define ROM_DIR "./roms"
-#define SCROLL_TIMER_MAX 50
+#define SCROLL_TIMER_MAX 30
 
 
 /* external references */
