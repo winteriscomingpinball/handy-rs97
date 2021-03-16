@@ -167,9 +167,9 @@ MENUITEM gui_ConfigMenuItems[] = {
 };
 
 MENU gui_ConfigMenu = { 2
-	#ifdef IPU_SCALE
+	//#ifdef IPU_SCALE
 	-1
-	#endif
+	//#endif
 , 0, (MENUITEM *)&gui_ConfigMenuItems };
 
 
