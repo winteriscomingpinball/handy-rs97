@@ -83,6 +83,8 @@ short curRomNum=0;
 short curRomPage=0;
 short romPageCount=0;
 bool romsChecked=0;
+int rom scrollCounter=0;
+int rom scrollMax=0;
 
 void gui_LoadState();
 void gui_SaveState();
@@ -370,7 +372,7 @@ void ShowStringEx(int x, int y, const char *s, int size)
 	for(i = 0; i < j; i++, x += 8*size) ShowChar(mainSurface, x, y, s[i], 0xFFFF, 0,size);
 }
 
-void ShowMenuItem(int x, int y, MENUITEM *m, int fg_color, bool scroll)
+void ShowMenuItem(int x, int y, MENUITEM *m, int fg_color, bool scroll, int scroll_pos)
 {
 	static char i_str[24];
 
@@ -379,7 +381,7 @@ void ShowMenuItem(int x, int y, MENUITEM *m, int fg_color, bool scroll)
 		if (!scroll){
 			print_string(m->itemName, fg_color, COLOR_BG, x, y, 2);
 		}else{
-			print_string(m->itemName+1, fg_color, COLOR_BG, x, y, 2);
+			print_string(m->itemName+scroll_pos, fg_color, COLOR_BG, x, y, 2);
 			
 		}
 		
@@ -572,15 +574,22 @@ void ShowMenu(MENU *menu)
 	if(runRomBrowser){
 		if (i>0)ymod=8;
 		bool scrollval=false;
-		printf("selected name size is: %d\n",strlen(gui_RomBrowserItems[menu->itemCur].itemName));
-		if(menu->itemCur == i && strlen(gui_RomBrowserItems[menu->itemCur].itemName)>20)scrollval=true;
+		//printf("selected name size is: %d\n",strlen(gui_RomBrowserItems[menu->itemCur].itemName));
+		if(menu->itemCur == i && strlen(gui_RomBrowserItems[menu->itemCur].itemName)>20){
+			scrollval=true;
+		    if (scrollCounter<scrollMax){
+				scrollCounter++
+			}else{
+				scrollCounter=0;
+			}
+		}
 			
 		
-		ShowMenuItem(0, 64 + ymod + (i * 9*2), mi, fg_color, scrollval);
+		ShowMenuItem(0, 64 + ymod + (i * 9*2), mi, fg_color, scrollval,scrollCounter);
 		
 	}
 	else{
-		ShowMenuItem(0, 64 + (i * 9*2), mi, fg_color, false);
+		ShowMenuItem(0, 64 + (i * 9*2), mi, fg_color, false,0);
 		
 		
 		
@@ -654,9 +663,19 @@ void gui_MainMenuRun(MENU *menu)
 				//if(gui_event.key.keysym.sym == SDLK_ESCAPE) return;
 				if(gui_event.key.keysym.sym == SDLK_RSHIFT && allowExit) return;
 				// DINGOO UP - arrow down
-				if(gui_event.key.keysym.sym == SDLK_UP) if(--menu->itemCur < 0) menu->itemCur = menu->itemNum - 1;
+				if(gui_event.key.keysym.sym == SDLK_UP){
+					if(--menu->itemCur < 0) menu->itemCur = menu->itemNum - 1;
+					scrollCounter=0;
+					scrollMax=strlen(gui_RomBrowserItems[menu->itemCur].itemName)-20;
+					if (scrollMax<0)scrollMax=0;
+				}
 				// DINGOO DOWN - arrow up
-				if(gui_event.key.keysym.sym == SDLK_DOWN) if(++menu->itemCur == menu->itemNum) menu->itemCur = 0;
+				if(gui_event.key.keysym.sym == SDLK_DOWN){
+					if(++menu->itemCur == menu->itemNum) menu->itemCur = 0;
+					scrollCounter=0;
+					scrollMax=strlen(gui_RomBrowserItems[menu->itemCur].itemName)-20;
+					if (scrollMax<0)scrollMax=0;
+				}
 				// DINGOO LEFT - decrease parameter value
 				if(gui_event.key.keysym.sym == SDLK_LEFT ) {
 					if(mi->itemPar != NULL && *mi->itemPar > 0) *mi->itemPar -= 1;
