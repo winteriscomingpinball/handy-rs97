@@ -176,9 +176,6 @@ MENU gui_ConfigMenu = { 2
 
 void gui_MainMenuRun(MENU *menu);
 
-int cmpfunc (const void *a, const void *b) {
-    return strcmp(*(const char **)a, *(const char **)b);
-}
 
 void sortRoms(char *arr[], int size)
 {
@@ -378,7 +375,7 @@ void ShowMenuItem(int x, int y, MENUITEM *m, int fg_color)
 	static char i_str[24];
 
 	// if no parameters, show simple menu item
-	if(m->itemPar == NULL) print_string(m->itemName, fg_color, COLOR_BG, x, y, 2);
+	if(m->itemPar == NULL) print_string(m->itemName+1, fg_color, COLOR_BG, x, y, 2);
 	else {
 		if(m->itemParName == NULL) {
 			// if parameter is a digit
