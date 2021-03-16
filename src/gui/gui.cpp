@@ -572,7 +572,7 @@ void ShowMenu(MENU *menu)
 	if(runRomBrowser){
 		if (i>0)ymod=8;
 		bool scrollval=false;
-		if(menu->itemCur == i)scrollval=true;
+		if(menu->itemCur == i && sizeof(gui_RomBrowserItems[menu->itemNum])>20)scrollval=true;
 			
 		
 		ShowMenuItem(0, 64 + ymod + (i * 9*2), mi, fg_color, scrollval);
