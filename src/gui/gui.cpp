@@ -176,12 +176,12 @@ MENU gui_ConfigMenu = { 2
 
 void gui_MainMenuRun(MENU *menu);
 
-int cmpfunc (char * a, char * b ) {
-    char *pa = *(char**)a;
-    char *pb = *(char**)b;
-
-    return strcmp(pa,pb);
+int cmpfunc (const void *a, const void *b) {
+{
+    return strcmp(*(const char **)a, *(const char **)b);
 }
+
+
 
 
 
@@ -248,8 +248,8 @@ void findRoms(){
 	   
 	   puts("Sorting found ROMs by name");
 	   
-	   //qsort(foundRoms,romCount,sizeof(char),cmpfunc);
-	   std::sort(foundRoms, foundRoms+ROM_COUNT_LIMIT);
+	   qsort(foundRoms,romCount,sizeof(char),cmpfunc);
+	   
 	   
    //}
    
