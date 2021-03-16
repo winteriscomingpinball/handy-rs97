@@ -582,7 +582,7 @@ void ShowMenu(MENU *menu)
 		    
 			scrollTimer++;
 			
-			if ({scrollTimer} > SCROLL_TIMER_MAX){
+			if (scrollTimer > SCROLL_TIMER_MAX){
 				if (scrollCounter<scrollMax){
 					scrollCounter++;
 				}else{
