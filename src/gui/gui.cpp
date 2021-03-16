@@ -563,8 +563,8 @@ void ShowMenu(MENU *menu)
 		if(menu->itemCur == i) fg_color = COLOR_ACTIVE_ITEM; else fg_color = COLOR_INACTIVE_ITEM;
 	//#ifdef RS90
 	if(runRomBrowser){
-		if (i>0)ymod=16;
-		ShowMenuItem(0, 56 + ymod + (i * 9*2), mi, fg_color);
+		if (i>0)ymod=14;
+		ShowMenuItem(0, 60 + ymod + (i * 9*2), mi, fg_color);
 		
 	}
 	else{
@@ -591,10 +591,10 @@ void ShowMenu(MENU *menu)
 	print_string("[START] = Choose", COLOR_HELP_TEXT, COLOR_BG, 0, 34, 1);
 	
 	}else{
-		print_string("[START] = Choose ROM", COLOR_HELP_TEXT, COLOR_BG, 0, 24, 1);
+		print_string("[START] = Choose ROM", COLOR_HELP_TEXT, COLOR_BG, 0, 20, 1);
 		
 		
-		if(romPageCount>0)print_string("[LEFT/RIGHT] = Change page", COLOR_HELP_TEXT, COLOR_BG, 0, 34, 1);
+		if(romPageCount>0)print_string("[LEFT/RIGHT] = Change page", COLOR_HELP_TEXT, COLOR_BG, 0, 30, 1);
 		
 		if(romPageCount>0)print_string(buf, color16(0, 40, 255), COLOR_BG, 0, 41, 2);
 		
