@@ -56,6 +56,7 @@
 #define ROM_COUNT_LIMIT 30
 #define ROM_PER_PAGE_COUNT 5
 #define ROM_DIR "./roms"
+#define SCROLL_TIMER_MAX 1000;
 
 
 /* external references */
@@ -85,6 +86,7 @@ short romPageCount=0;
 bool romsChecked=0;
 int scrollCounter=0;
 int scrollMax=0;
+int scrollTimer=0;
 
 void gui_LoadState();
 void gui_SaveState();
@@ -577,10 +579,16 @@ void ShowMenu(MENU *menu)
 		//printf("selected name size is: %d\n",strlen(gui_RomBrowserItems[menu->itemCur].itemName));
 		if(menu->itemCur == i && strlen(gui_RomBrowserItems[menu->itemCur].itemName)>20){
 			scrollval=true;
-		    if (scrollCounter<scrollMax){
-				scrollCounter++;
-			}else{
-				scrollCounter=0;
+		    
+			scrollTimer++;
+			
+			if (scrollTimer>SCROLL_TIMER_MAX){
+				if (scrollCounter<scrollMax){
+					scrollCounter++;
+				}else{
+					scrollCounter=0;
+				}
+				scrollTimer=0;
 			}
 		}
 			
