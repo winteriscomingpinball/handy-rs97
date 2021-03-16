@@ -187,11 +187,11 @@ void sortRoms(char *arr[], int size)
     {
         for(int i=j+1; i<size; i++)
         { 
-            if(strcmp(arr[i],arr[j])>0)
+            if(strcmp(arr[j],arr[i])>0)
             {
-            temp=arr[i];
-            arr[i]=arr[j];
-            arr[j]=temp;
+            temp=arr[j];
+            arr[j]=arr[i];
+            arr[i]=temp;
             }
         }
     }
