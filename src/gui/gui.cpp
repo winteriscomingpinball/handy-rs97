@@ -77,7 +77,7 @@ int Invert = 0;
 
 int allowExit=1;
 
-char foundRoms[ROM_COUNT_LIMIT];
+char *foundRoms[ROM_COUNT_LIMIT];
 short romCount=0;
 short curRomNum=0;
 short curRomPage=0;
@@ -180,7 +180,22 @@ int cmpfunc (const void *a, const void *b) {
     return strcmp(*(const char **)a, *(const char **)b);
 }
 
-
+void sortRoms(char *arr[], int size)
+{
+    char * temp;
+    for(int j=0; j<size-1;j++)
+    {
+        for(int i=j+1; i<size; i++)
+        { 
+            if(strcmp(arr[i],arr[j])>0)
+            {
+            temp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp;
+            }
+        }
+    }
+}
 
 
 
@@ -247,7 +262,8 @@ void findRoms(){
 	   
 	   puts("Sorting found ROMs by name");
 	   
-	   qsort(foundRoms,romCount,sizeof(char),cmpfunc);
+	   //qsort(foundRoms,romCount,sizeof(char),cmpfunc);
+	   sortRoms(foundRoms,romCount);
 	   
 	   
    //}
