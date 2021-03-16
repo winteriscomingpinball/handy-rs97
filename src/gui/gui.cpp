@@ -598,7 +598,7 @@ void ShowMenu(MENU *menu)
 		
 		if(romPageCount>0)print_string("[LEFT/RIGHT] = Change page", COLOR_HELP_TEXT, COLOR_BG, 0, 30, 1);
 		
-		if(romPageCount>0)print_string(buf, color16(0, 40, 255), COLOR_BG, 0, 41, 2);
+		if(romPageCount>0)print_string(buf, color16(0, 40, 255), COLOR_BG, 60, 2, 2);
 		
 	}
 	
