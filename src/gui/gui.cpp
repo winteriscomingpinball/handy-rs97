@@ -160,9 +160,9 @@ MENU gui_MainMenu = { 6, 0, (MENUITEM *)&gui_MainMenuItems };
 MENU gui_RomBrowser = { ROM_PER_PAGE_COUNT+1, 0, (MENUITEM *)&gui_RomBrowserItems };
 
 MENUITEM gui_ConfigMenuItems[] = {
-#ifndef IPU_SCALE
+//#ifndef IPU_SCALE
 	//(char *)"Upscale  : ", &gui_ImageScaling, 1, (const char **)&gui_ScaleNames, NULL},
-#endif
+//#endif
 	{(char *)"Swap A/B : ", &gui_SwapAB, 1, (const char **)&gui_YesNo, NULL}
 };
 
