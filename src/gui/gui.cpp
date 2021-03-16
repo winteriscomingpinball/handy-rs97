@@ -248,7 +248,9 @@ void findRoms(){
 	   
 	   puts("Sorting found ROMs by name");
 	   
-	   qsort(foundRoms,romCount,sizeof(char),cmpfunc);
+	   //qsort(foundRoms,romCount,sizeof(char),cmpfunc);
+	   std::sort(foundRoms, foundRoms+ROM_COUNT_LIMIT);
+	   
    //}
    
    setupRomPage(0);
