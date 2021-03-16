@@ -83,8 +83,8 @@ short curRomNum=0;
 short curRomPage=0;
 short romPageCount=0;
 bool romsChecked=0;
-int rom scrollCounter=0;
-int rom scrollMax=0;
+int scrollCounter=0;
+int scrollMax=0;
 
 void gui_LoadState();
 void gui_SaveState();
