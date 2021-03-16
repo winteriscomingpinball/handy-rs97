@@ -572,6 +572,7 @@ void ShowMenu(MENU *menu)
 	if(runRomBrowser){
 		if (i>0)ymod=8;
 		bool scrollval=false;
+		printf("selected name size is: %d\n",sizeof(gui_RomBrowserItems[menu->itemNum]));
 		if(menu->itemCur == i && sizeof(gui_RomBrowserItems[menu->itemNum])>20)scrollval=true;
 			
 		
