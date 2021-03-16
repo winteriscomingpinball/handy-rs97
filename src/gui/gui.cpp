@@ -563,8 +563,8 @@ void ShowMenu(MENU *menu)
 		if(menu->itemCur == i) fg_color = COLOR_ACTIVE_ITEM; else fg_color = COLOR_INACTIVE_ITEM;
 	//#ifdef RS90
 	if(runRomBrowser){
-		if (i>0)ymod=14;
-		ShowMenuItem(0, 60 + ymod + (i * 9*2), mi, fg_color);
+		if (i>0)ymod=8;
+		ShowMenuItem(0, 64 + ymod + (i * 9*2), mi, fg_color);
 		
 	}
 	else{
