@@ -177,7 +177,6 @@ MENU gui_ConfigMenu = { 2
 void gui_MainMenuRun(MENU *menu);
 
 int cmpfunc (const void *a, const void *b) {
-{
     return strcmp(*(const char **)a, *(const char **)b);
 }
 
