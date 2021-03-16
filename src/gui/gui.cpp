@@ -544,7 +544,7 @@ void ShowMenu(MENU *menu)
 		
 	}
 	else{
-		ShowMenuItem(0, 53 + (i * 9*2), mi, fg_color);
+		ShowMenuItem(0, 60 + (i * 9*2), mi, fg_color);
 		
 		
 		
@@ -560,11 +560,11 @@ void ShowMenu(MENU *menu)
 	
 	
 	
-	print_string("Handy", color16(0, 255, 255), COLOR_BG, 5, 2, 2);
+	print_string("Handy", color16(0, 255, 255), COLOR_BG, 0, 2, 2);
 	if(!runRomBrowser){
 	//print_string("Port by gameblabla", COLOR_HELP_TEXT, COLOR_BG, 48, 88);
-	print_string("[1] = Return to game", COLOR_HELP_TEXT, COLOR_BG, 4, 16, 1);
-	print_string("[START] = Choose Item", COLOR_HELP_TEXT, COLOR_BG, 4, 23, 1);
+	print_string("[1] = Return", COLOR_HELP_TEXT, COLOR_BG, 0, 17, 1);
+	print_string("[START] = Choose", COLOR_HELP_TEXT, COLOR_BG, 0, 25, 1);
 	
 	}else{
 		print_string("[START] = Choose ROM", COLOR_HELP_TEXT, COLOR_BG, 4, 17, 1);
