@@ -440,11 +440,11 @@ void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y, int s
 {
 	int sizemod=0;
 	int i, j = strlen(s);
-	if (size>1){
-		sizemod=FONT_WIDTH*size+1; //font width X size
-	}else{
-	    sizemod=FONT_WIDTH+1; //font width + 1
-	}
+	//if (size>1){
+		sizemod=FONT_WIDTH*size+size; //font width X size
+	//}else{
+	//    sizemod=FONT_WIDTH+1; //font width + 1
+	//}
 	 
 
 	for(i = 0; i < j; i++, x += sizemod){
