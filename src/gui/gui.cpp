@@ -329,7 +329,7 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 			dst = (Uint16 *)s->pixels + (y+8-h)*s->w + x;
 			for(w = 8; w; w--) {
 				Uint16 color = bg_color; // background
-				if((console_font_6x8[a*8 + (8-h)] >> w) & 1) color = fg_color; // test bits 876543210
+				if((USED_FONT[a*8 + (8-h)] >> w) & 1) color = fg_color; // test bits 876543210
 				
 		
 					*dst++ = color;
@@ -347,7 +347,7 @@ void ShowChar(SDL_Surface *s, int x, int y, unsigned char a, int fg_color, int b
 					
 					charPixelw=(w+(size-1))/size-1;
 					Uint16 color = bg_color; // background
-				    if((console_font_6x8[a*8 + (8-charPixelh)] >> charPixelw) & 1) color = fg_color; // test bits 876543210
+				    if((USED_FONT[a*8 + (8-charPixelh)] >> charPixelw) & 1) color = fg_color; // test bits 876543210
 				 					
 						
 							*dst++ = color;
@@ -441,9 +441,9 @@ void print_string(const char *s, u16 fg_color, u16 bg_color, int x, int y, int s
 	int sizemod=0;
 	int i, j = strlen(s);
 	if (size>1){
-		sizemod=6*size;
+		sizemod=FONT_WIDTH*size; //font width X size
 	}else{
-	    sizemod=7;
+	    sizemod=FONT_WIDTH+1; //font width + 1
 	}
 	 
 
